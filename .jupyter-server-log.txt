@@ -244,3 +244,7 @@ not able to serialize: expected string or bytes-like object
 TermSocket.open: Opened 1
 [I 16:20:45.548 NotebookApp] Saving file at /OSMnx startercode.ipynb
 [W 16:27:09.500 NotebookApp] /home/jovyan/.gitconfig.lock doesn't exist
+[W 16:29:44.136 NotebookApp] Culling 'idle' kernel 'python3' (a9c0498a-ad41-4f2c-9006-a72a8bd08284) with 2 connections due to 604 seconds of inactivity.
+[I 16:29:44.136 NotebookApp] Kernel shutdown: a9c0498a-ad41-4f2c-9006-a72a8bd08284
+[I 16:29:44.327 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon.ico (134.53.89.114) 1.060000ms
+[W 16:43:03.374 NotebookApp] delete /week_2.ipynb
