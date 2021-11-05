@@ -242,3 +242,5 @@
 TermSocket.open: 1
 not able to serialize: expected string or bytes-like object
 TermSocket.open: Opened 1
+[I 16:20:45.548 NotebookApp] Saving file at /OSMnx startercode.ipynb
+[W 16:27:09.500 NotebookApp] /home/jovyan/.gitconfig.lock doesn't exist
