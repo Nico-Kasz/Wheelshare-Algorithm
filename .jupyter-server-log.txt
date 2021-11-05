@@ -1,0 +1,244 @@
+[I 16:04:28.449 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[W 2021-11-05 16:04:29.340 LabApp] 'ip' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'port' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'base_url' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'token' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'trust_xheaders' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'allow_origin' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'allow_origin_pat' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.340 LabApp] 'extra_template_paths' was found in both NotebookApp and ServerApp. This is likely a recent change. This config will only be set in NotebookApp. Please check if you should also config these traits in ServerApp for your purpose.
+[W 2021-11-05 16:04:29.340 LabApp] 'jinja_template_vars' was found in both NotebookApp and ServerApp. This is likely a recent change. This config will only be set in NotebookApp. Please check if you should also config these traits in ServerApp for your purpose.
+[W 2021-11-05 16:04:29.341 LabApp] 'shutdown_no_activity_timeout' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.341 LabApp] 'tornado_settings' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2021-11-05 16:04:29.341 LabApp] 'tornado_settings' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[I 2021-11-05 16:04:29.352 LabApp] JupyterLab extension loaded from /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyterlab
+[I 2021-11-05 16:04:29.352 LabApp] JupyterLab application directory is /srv/conda/envs/notebook/share/jupyter/lab
+[I 16:04:29.364 NotebookApp] nteract extension loaded from /srv/conda/envs/notebook/lib/python3.7/site-packages/nteract_on_jupyter
+[I 16:04:29.366 NotebookApp] Will shut down after 600 seconds with no kernels or terminals.
+[I 16:04:29.367 NotebookApp] Serving notebooks from local directory: /home/jovyan
+[I 16:04:29.367 NotebookApp] Jupyter Notebook 6.3.0 is running at:
+[I 16:04:29.367 NotebookApp] http://jupyter-nico-2dkasz-2dwheelshare-2dalgorithm-2d3kn5r9cj:8888/user/nico-kasz-wheelshare-algorithm-3kn5r9cj/?token=...
+[I 16:04:29.367 NotebookApp]  or http://127.0.0.1:8888/user/nico-kasz-wheelshare-algorithm-3kn5r9cj/?token=...
+[I 16:04:29.367 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 16:04:29.373 NotebookApp] No web browser found: could not locate runnable browser.
+[I 16:04:32.740 NotebookApp] 302 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/ (10.0.2.13) 1.190000ms
+[I 16:04:32.968 NotebookApp] 302 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/?token=8RjqViPYRc2TisK9xvd9gg (134.53.89.114) 0.980000ms
+[I 16:04:33.035 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/lab/?token=8RjqViPYRc2TisK9xvd9gg (134.53.89.114) 1.930000ms
+[I 16:04:34.546 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon.ico (134.53.89.114) 0.930000ms
+[I 2021-11-05 16:04:38.176 LabApp] Build is up to date
+/srv/conda/envs/notebook/lib/python3.7/json/encoder.py:257: UserWarning: date_default is deprecated since jupyter_client 7.0.0. Use jupyter_client.jsonutil.json_default.
+  return _iterencode(o, 0)
+[I 16:04:42.826 NotebookApp] Writing notebook-signing key to /home/jovyan/.local/share/jupyter/notebook_secret
+[W 16:04:42.828 NotebookApp] Notebook OSMnx startercode.ipynb is not trusted
+[I 16:04:44.134 NotebookApp] Kernel started: a9c0498a-ad41-4f2c-9006-a72a8bd08284, name: python3
+[I 16:04:44.135 NotebookApp] Culling kernels with idle durations > 600 seconds at 60 second intervals ...
+[I 16:04:44.135 NotebookApp] Culling kernels even with connected clients
+/srv/conda/envs/notebook/lib/python3.7/json/encoder.py:257: UserWarning: date_default is deprecated since jupyter_client 7.0.0. Use jupyter_client.jsonutil.json_default.
+  return _iterencode(o, 0)
+[I 16:04:45.091 NotebookApp] Starting buffering for a9c0498a-ad41-4f2c-9006-a72a8bd08284:2ccaa047-9c1f-4818-a54c-8a0567fa7d12
+[I 16:04:45.577 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon.ico (134.53.89.114) 0.650000ms
+[I 16:06:43.606 NotebookApp] Saving file at /OSMnx startercode.ipynb
+[I 16:08:43.989 NotebookApp] Saving file at /OSMnx startercode.ipynb
+[I 16:12:44.283 NotebookApp] Saving file at /OSMnx startercode.ipynb
+[I 16:14:12.684 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon-busy-1.ico (134.53.89.114) 0.680000ms
+[I 16:14:44.517 NotebookApp] Saving file at /OSMnx startercode.ipynb
+2021-11-05 16:14:46 Configured OSMnx 1.1.1
+2021-11-05 16:14:46 HTTP response caching is on
+2021-11-05 16:14:46 Created bbox 250 m from (39.51101131560681, -84.7335925887448): 39.51325961644554,39.50876301476808,-84.7306784033106,-84.73650677417899
+2021-11-05 16:14:47 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:47 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:47 Requesting data within polygon from API in 1 request(s)
+2021-11-05 16:14:47 Resolved overpass-api.de to 178.63.11.215
+2021-11-05 16:14:47 Pausing 0 seconds before making HTTP POST request
+2021-11-05 16:14:47 Post https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A180%5D%3B%28%28node%5B%27surface%27%3D%27concrete%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%28way%5B%27surface%27%3D%27concrete%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%28relation%5B%27surface%27%3D%27concrete%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%28node%5B%27surface%27%3D%27Asphalt%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%28way%5B%27surface%27%3D%27Asphalt%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%28relation%5B%27surface%27%3D%27Asphalt%27%5D%28poly%3A%2739.508763+-84.736507+39.508763+-84.730678+39.513260+-84.730678+39.513260+-84.736507+39.508763+-84.736507%27%29%3B%28._%3B%3E%3B%29%3B%29%3B%29%3Bout%3B with timeout=180
+2021-11-05 16:14:47 Resolved overpass-api.de to 178.63.11.215
+2021-11-05 16:14:49 Downloaded 41.8kB from overpass-api.de
+2021-11-05 16:14:49 Saved response to cache file "cache/bdda11c4ef7bfb2681242929c3bed5739b9ab181.json"
+2021-11-05 16:14:49 Got all geometries data within polygon from API in 1 request(s)
+2021-11-05 16:14:49 Converting 327 elements in JSON responses to geometries
+2021-11-05 16:14:49 69 geometries created in the dict
+2021-11-05 16:14:49 0 untagged geometries removed
+2021-11-05 16:14:49 Created r-tree spatial index for 69 geometries
+2021-11-05 16:14:49 Identified 68 geometries inside polygon
+2021-11-05 16:14:49 1 geometries removed by the polygon filter
+2021-11-05 16:14:49 10 geometries removed by the tag filter
+2021-11-05 16:14:49 59 geometries in the final GeoDataFrame
+2021-11-05 16:14:49 Pausing 1 seconds before making HTTP GET request
+2021-11-05 16:14:50 Get https://nominatim.openstreetmap.org/search?format=json&limit=1&dedupe=0&q=Benton+Hall with timeout=180
+2021-11-05 16:14:50 Downloaded 0.5kB from nominatim.openstreetmap.org
+2021-11-05 16:14:50 Saved response to cache file "cache/b2214aeabbe5e2d7948b85ad7e07ee6dbcdeb244.json"
+2021-11-05 16:14:50 Geocoded "Benton Hall" to (39.51074355, -84.73364497785923)
+2021-11-05 16:14:50 Created bbox 150 m from (39.51074355, -84.73364497785923): 39.51209253050324,39.50939456949676,-84.73189647333736,-84.7353934823811
+2021-11-05 16:14:50 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:50 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:50 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:50 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:50 Requesting data within polygon from API in 1 request(s)
+2021-11-05 16:14:50 Resolved overpass-api.de to 178.63.11.215
+2021-11-05 16:14:51 Pausing 0 seconds before making HTTP POST request
+2021-11-05 16:14:51 Post https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A180%5D%3B%28way%5B%22highway%22%5D%5B%22area%22%21~%22yes%22%5D%5B%22access%22%21~%22private%22%5D%5B%22highway%22%21~%22abandoned%7Cbus_guideway%7Cconstruction%7Ccycleway%7Cmotor%7Cplanned%7Cplatform%7Cproposed%7Craceway%22%5D%5B%22foot%22%21~%22no%22%5D%5B%22service%22%21~%22private%22%5D%28poly%3A%2739.509394+-84.741207+39.512092+-84.741207+39.512534+-84.741179+39.512971+-84.741096+39.513400+-84.740957+39.513816+-84.740765+39.514215+-84.740521+39.514594+-84.740228+39.514949+-84.739888+39.515277+-84.739505+39.515573+-84.739082+39.515837+-84.738624+39.516064+-84.738134+39.516253+-84.737618+39.516402+-84.737081+39.516509+-84.736528+39.516574+-84.735963+39.516596+-84.735394+39.516596+-84.731896+39.516574+-84.731326+39.516509+-84.730762+39.516402+-84.730209+39.516253+-84.729671+39.516064+-84.729156+39.515837+-84.728666+39.515573+-84.728208+39.515277+-84.727785+39.514949+-84.727402+39.514594+-84.727062+39.514215+-84.726769+39.513816+-84.726525+39.513400+-84.726333+39.512971+-84.726194+39.512534+-84.726111+39.512092+-84.726083+39.509394+-84.726083+39.508953+-84.726111+39.508516+-84.726195+39.508087+-84.726333+39.507671+-84.726526+39.507272+-84.726770+39.506893+-84.727063+39.506538+-84.727403+39.506210+-84.727786+39.505913+-84.728209+39.505650+-84.728667+39.505423+-84.729156+39.505234+-84.729672+39.505085+-84.730209+39.504978+-84.730762+39.504913+-84.731327+39.504891+-84.731897+39.504891+-84.735393+39.504913+-84.735963+39.504978+-84.736527+39.505085+-84.737081+39.505234+-84.737618+39.505423+-84.738134+39.505650+-84.738623+39.505913+-84.739081+39.506210+-84.739504+39.506538+-84.739887+39.506893+-84.740227+39.507272+-84.740520+39.507671+-84.740764+39.508087+-84.740956+39.508516+-84.741095+39.508953+-84.741179+39.509394+-84.741207%27%29%3B%3E%3B%29%3Bout%3B with timeout=180
+2021-11-05 16:14:51 Resolved overpass-api.de to 178.63.11.215
+2021-11-05 16:14:52 Downloaded 722.9kB from overpass-api.de
+2021-11-05 16:14:53 Saved response to cache file "cache/5d6eeff043351397ccbb072baacf3e620b43fd15.json"
+2021-11-05 16:14:53 Got all network data within polygon from API in 1 request(s)
+2021-11-05 16:14:53 Creating graph from downloaded OSM data...
+2021-11-05 16:14:53 Created graph with 4143 nodes and 9884 edges
+2021-11-05 16:14:53 Added length attributes to graph edges
+2021-11-05 16:14:53 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:14:53 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:53 Created r-tree spatial index for 4143 geometries
+2021-11-05 16:14:53 Identified 3714 geometries inside polygon
+2021-11-05 16:14:54 Removed 429 nodes outside polygon
+2021-11-05 16:14:54 Truncated graph by polygon
+2021-11-05 16:14:54 Begin topologically simplifying the graph...
+2021-11-05 16:14:54 Identified 1817 edge endpoints
+2021-11-05 16:14:54 Simplified graph: 3714 to 1817 nodes, 8972 to 5178 edges
+2021-11-05 16:14:54 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:14:55 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:55 Created r-tree spatial index for 1817 geometries
+2021-11-05 16:14:55 Identified 170 geometries inside polygon
+2021-11-05 16:14:55 Removed 1647 nodes outside polygon
+2021-11-05 16:14:55 Removed 2 isolated nodes
+2021-11-05 16:14:55 Got largest weakly connected component (162 of 168 total nodes)
+2021-11-05 16:14:55 Truncated graph by polygon
+2021-11-05 16:14:55 Counted undirected street segments incident on each node
+2021-11-05 16:14:55 graph_from_polygon returned graph with 162 nodes and 458 edges
+2021-11-05 16:14:55 graph_from_bbox returned graph with 162 nodes and 458 edges
+2021-11-05 16:14:55 graph_from_point returned graph with 162 nodes and 458 edges
+2021-11-05 16:14:55 graph_from_address returned graph with 162 nodes and 458 edges
+2021-11-05 16:14:55 Begin plotting the graph...
+2021-11-05 16:14:55 Created edges GeoDataFrame from graph
+2021-11-05 16:14:55 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:56 Finished plotting the graph
+2021-11-05 16:14:56 Created bbox 250 m from (39.51101131560681, -84.7335925887448): 39.51325961644554,39.50876301476808,-84.7306784033106,-84.73650677417899
+2021-11-05 16:14:56 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:56 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:56 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:56 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:56 Requesting data within polygon from API in 1 request(s)
+2021-11-05 16:14:56 Resolved overpass-api.de to 178.63.48.217
+2021-11-05 16:14:56 Pausing 0 seconds before making HTTP POST request
+2021-11-05 16:14:56 Post https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A180%5D%3B%28way%5B%22surface%22~%22concrete%22%5D%28poly%3A%2739.508763+-84.742320+39.513259+-84.742321+39.513701+-84.742293+39.514138+-84.742209+39.514567+-84.742070+39.514983+-84.741878+39.515382+-84.741634+39.515761+-84.741341+39.516116+-84.741001+39.516444+-84.740618+39.516741+-84.740195+39.517004+-84.739737+39.517231+-84.739248+39.517420+-84.738732+39.517569+-84.738195+39.517676+-84.737641+39.517741+-84.737077+39.517763+-84.736507+39.517763+-84.730678+39.517741+-84.730108+39.517676+-84.729544+39.517569+-84.728991+39.517420+-84.728453+39.517231+-84.727938+39.517004+-84.727448+39.516740+-84.726990+39.516444+-84.726567+39.516116+-84.726184+39.515761+-84.725844+39.515382+-84.725551+39.514983+-84.725307+39.514567+-84.725115+39.514138+-84.724976+39.513701+-84.724893+39.513259+-84.724865+39.508763+-84.724865+39.508321+-84.724893+39.507884+-84.724977+39.507456+-84.725115+39.507040+-84.725308+39.506640+-84.725552+39.506261+-84.725845+39.505906+-84.726185+39.505579+-84.726568+39.505282+-84.726991+39.505019+-84.727449+39.504791+-84.727938+39.504603+-84.728454+39.504454+-84.728991+39.504346+-84.729544+39.504282+-84.730109+39.504260+-84.730679+39.504260+-84.736507+39.504281+-84.737076+39.504346+-84.737641+39.504454+-84.738194+39.504603+-84.738731+39.504791+-84.739247+39.505019+-84.739736+39.505282+-84.740194+39.505579+-84.740617+39.505906+-84.741000+39.506261+-84.741340+39.506640+-84.741634+39.507040+-84.741877+39.507456+-84.742070+39.507884+-84.742208+39.508321+-84.742292+39.508763+-84.742320%27%29%3B%3E%3B%29%3Bout%3B with timeout=180
+2021-11-05 16:14:56 Resolved overpass-api.de to 178.63.48.217
+2021-11-05 16:14:57 Downloaded 73.2kB from overpass-api.de
+2021-11-05 16:14:57 Saved response to cache file "cache/c89f0aeaf07fa0f6f956f4934c03128d4e58052b.json"
+2021-11-05 16:14:57 Got all network data within polygon from API in 1 request(s)
+2021-11-05 16:14:57 Creating graph from downloaded OSM data...
+2021-11-05 16:14:57 Created graph with 446 nodes and 914 edges
+2021-11-05 16:14:57 Added length attributes to graph edges
+2021-11-05 16:14:57 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:14:57 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:57 Created r-tree spatial index for 446 geometries
+2021-11-05 16:14:57 Identified 446 geometries inside polygon
+2021-11-05 16:14:57 Removed 0 nodes outside polygon
+2021-11-05 16:14:57 Truncated graph by polygon
+2021-11-05 16:14:57 Begin topologically simplifying the graph...
+2021-11-05 16:14:57 Identified 153 edge endpoints
+2021-11-05 16:14:57 Simplified graph: 446 to 153 nodes, 914 to 328 edges
+2021-11-05 16:14:57 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:14:57 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:57 Created r-tree spatial index for 153 geometries
+2021-11-05 16:14:57 Identified 84 geometries inside polygon
+2021-11-05 16:14:57 Removed 69 nodes outside polygon
+2021-11-05 16:14:57 Truncated graph by polygon
+2021-11-05 16:14:57 Counted undirected street segments incident on each node
+2021-11-05 16:14:57 graph_from_polygon returned graph with 84 nodes and 174 edges
+2021-11-05 16:14:57 graph_from_bbox returned graph with 84 nodes and 174 edges
+2021-11-05 16:14:57 graph_from_point returned graph with 84 nodes and 174 edges
+2021-11-05 16:14:57 Begin plotting the graph...
+2021-11-05 16:14:57 Created edges GeoDataFrame from graph
+2021-11-05 16:14:58 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:58 Finished plotting the graph
+2021-11-05 16:14:58 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:58 Created edges GeoDataFrame from graph
+2021-11-05 16:14:58 Created graph from node/edge GeoDataFrames
+2021-11-05 16:14:58 Begin plotting the graph...
+2021-11-05 16:14:58 Created edges GeoDataFrame from graph
+2021-11-05 16:14:58 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:58 Finished plotting the graph
+2021-11-05 16:14:58 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:58 Created edges GeoDataFrame from graph
+2021-11-05 16:14:58 Created graph from node/edge GeoDataFrames
+2021-11-05 16:14:58 Begin plotting the graph...
+2021-11-05 16:14:58 Created edges GeoDataFrame from graph
+2021-11-05 16:14:59 Created nodes GeoDataFrame from graph
+2021-11-05 16:14:59 Finished plotting the graph
+2021-11-05 16:14:59 Created bbox 1000 m from (39.51101131560681, -84.7335925887448): 39.520004518961734,39.50201811225188,-84.72193584700803,-84.74524933048157
+2021-11-05 16:14:59 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:59 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:59 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:14:59 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:14:59 Requesting data within polygon from API in 1 request(s)
+2021-11-05 16:14:59 Resolved overpass-api.de to 178.63.48.217
+2021-11-05 16:14:59 Pausing 0 seconds before making HTTP POST request
+2021-11-05 16:14:59 Post https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A180%5D%3B%28way%5B%22highway%22%5D%5B%22area%22%21~%22yes%22%5D%5B%22highway%22%21~%22abandoned%7Cconstruction%7Cplanned%7Cplatform%7Cproposed%7Craceway%22%5D%28poly%3A%2739.502018+-84.751062+39.520004+-84.751064+39.520446+-84.751036+39.520883+-84.750952+39.521312+-84.750813+39.521728+-84.750621+39.522127+-84.750377+39.522506+-84.750084+39.522861+-84.749744+39.523188+-84.749361+39.523485+-84.748938+39.523749+-84.748480+39.523976+-84.747991+39.524165+-84.747475+39.524314+-84.746938+39.524421+-84.746384+39.524486+-84.745820+39.524508+-84.745250+39.524508+-84.721935+39.524486+-84.721365+39.524421+-84.720801+39.524314+-84.720247+39.524165+-84.719710+39.523976+-84.719194+39.523748+-84.718705+39.523485+-84.718247+39.523188+-84.717824+39.522861+-84.717441+39.522506+-84.717101+39.522127+-84.716808+39.521728+-84.716564+39.521311+-84.716372+39.520883+-84.716233+39.520446+-84.716150+39.520004+-84.716122+39.502018+-84.716123+39.501577+-84.716151+39.501139+-84.716235+39.500711+-84.716373+39.500295+-84.716566+39.499895+-84.716810+39.499516+-84.717103+39.499161+-84.717443+39.498834+-84.717826+39.498537+-84.718249+39.498274+-84.718707+39.498046+-84.719196+39.497858+-84.719712+39.497709+-84.720249+39.497601+-84.720803+39.497537+-84.721367+39.497515+-84.721937+39.497515+-84.745249+39.497537+-84.745818+39.497601+-84.746383+39.497709+-84.746936+39.497857+-84.747473+39.498046+-84.747989+39.498274+-84.748478+39.498537+-84.748936+39.498834+-84.749359+39.499161+-84.749742+39.499516+-84.750082+39.499895+-84.750376+39.500295+-84.750619+39.500711+-84.750812+39.501139+-84.750950+39.501577+-84.751034+39.502018+-84.751062%27%29%3B%3E%3B%29%3Bout%3B with timeout=180
+2021-11-05 16:14:59 Resolved overpass-api.de to 178.63.48.217
+2021-11-05 16:15:02 Downloaded 1,628.8kB from overpass-api.de
+2021-11-05 16:15:02 Saved response to cache file "cache/9e5c1c7ec03dcb0165481facd336f81f3fd555cf.json"
+2021-11-05 16:15:02 Got all network data within polygon from API in 1 request(s)
+2021-11-05 16:15:02 Creating graph from downloaded OSM data...
+2021-11-05 16:15:03 Created graph with 9995 nodes and 22890 edges
+2021-11-05 16:15:03 Added length attributes to graph edges
+2021-11-05 16:15:03 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:15:03 Created nodes GeoDataFrame from graph
+2021-11-05 16:15:04 Created r-tree spatial index for 9995 geometries
+2021-11-05 16:15:04 Identified 9370 geometries inside polygon
+2021-11-05 16:15:04 Removed 625 nodes outside polygon
+2021-11-05 16:15:04 Truncated graph by polygon
+2021-11-05 16:15:04 Begin topologically simplifying the graph...
+2021-11-05 16:15:05 Identified 3970 edge endpoints
+2021-11-05 16:15:06 Simplified graph: 9370 to 3970 nodes, 21613 to 11076 edges
+2021-11-05 16:15:06 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:15:06 Created nodes GeoDataFrame from graph
+2021-11-05 16:15:06 Created r-tree spatial index for 3970 geometries
+2021-11-05 16:15:06 Identified 2972 geometries inside polygon
+2021-11-05 16:15:07 Removed 998 nodes outside polygon
+2021-11-05 16:15:07 Removed 8 isolated nodes
+2021-11-05 16:15:07 Got largest weakly connected component (2945 of 2964 total nodes)
+2021-11-05 16:15:07 Truncated graph by polygon
+2021-11-05 16:15:07 Counted undirected street segments incident on each node
+2021-11-05 16:15:07 graph_from_polygon returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:15:07 graph_from_bbox returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:15:07 graph_from_point returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:15:07 Created nodes GeoDataFrame from graph
+[I 16:16:45.150 NotebookApp] Saving file at /OSMnx startercode.ipynb
+2021-11-05 16:18:49 Created bbox 1000 m from (39.51101131560681, -84.7335925887448): 39.520004518961734,39.50201811225188,-84.72193584700803,-84.74524933048157
+2021-11-05 16:18:49 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:18:49 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:18:49 Projected GeoDataFrame to +proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +type=crs
+2021-11-05 16:18:49 Projected GeoDataFrame to epsg:4326
+2021-11-05 16:18:49 Requesting data within polygon from API in 1 request(s)
+2021-11-05 16:18:49 Retrieved response from cache file "cache/9e5c1c7ec03dcb0165481facd336f81f3fd555cf.json"
+2021-11-05 16:18:49 Got all network data within polygon from API in 1 request(s)
+2021-11-05 16:18:49 Creating graph from downloaded OSM data...
+[I 16:18:50.032 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon-busy-1.ico (134.53.89.114) 0.630000ms
+2021-11-05 16:18:50 Created graph with 9995 nodes and 22890 edges
+2021-11-05 16:18:50 Added length attributes to graph edges
+2021-11-05 16:18:50 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:18:50 Created nodes GeoDataFrame from graph
+2021-11-05 16:18:51 Created r-tree spatial index for 9995 geometries
+2021-11-05 16:18:51 Identified 9370 geometries inside polygon
+2021-11-05 16:18:51 Removed 625 nodes outside polygon
+2021-11-05 16:18:51 Truncated graph by polygon
+2021-11-05 16:18:51 Begin topologically simplifying the graph...
+2021-11-05 16:18:52 Identified 3970 edge endpoints
+2021-11-05 16:18:53 Simplified graph: 9370 to 3970 nodes, 21613 to 11076 edges
+2021-11-05 16:18:53 Identifying all nodes that lie outside the polygon...
+2021-11-05 16:18:53 Created nodes GeoDataFrame from graph
+2021-11-05 16:18:53 Created r-tree spatial index for 3970 geometries
+2021-11-05 16:18:53 Identified 2972 geometries inside polygon
+2021-11-05 16:18:53 Removed 998 nodes outside polygon
+2021-11-05 16:18:53 Removed 8 isolated nodes
+2021-11-05 16:18:54 Got largest weakly connected component (2945 of 2964 total nodes)
+2021-11-05 16:18:54 Truncated graph by polygon
+2021-11-05 16:18:54 Counted undirected street segments incident on each node
+2021-11-05 16:18:54 graph_from_polygon returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:18:54 graph_from_bbox returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:18:54 graph_from_point returned graph with 2945 nodes and 8262 edges
+2021-11-05 16:18:54 Created nodes GeoDataFrame from graph
+[I 16:19:25.608 NotebookApp] 301 GET /user/nico-kasz-wheelshare-algorithm-3kn5r9cj/static/favicons/favicon.ico (134.53.89.114) 0.980000ms
+[I 16:19:26.058 NotebookApp] Kernel restarted: a9c0498a-ad41-4f2c-9006-a72a8bd08284
+[I 16:19:39.162 NotebookApp] New terminal with automatic name: 1
+TermSocket.open: 1
+not able to serialize: expected string or bytes-like object
+TermSocket.open: Opened 1
