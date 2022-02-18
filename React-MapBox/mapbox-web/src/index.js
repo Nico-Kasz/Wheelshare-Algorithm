@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import WebMap from './App';
+import Map from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <WebMap />
+        <div>       {/* Render UI alongside map and overlay */}
+            <Map />
+        </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

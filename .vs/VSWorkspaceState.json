@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\React-MapBox",
+    "\\React-MapBox\\mapbox-web",
+    "\\React-MapBox\\mapbox-web\\src"
   ],
-  "SelectedNode": "\\test code",
   "PreviewInSolutionExplorer": false
 }
