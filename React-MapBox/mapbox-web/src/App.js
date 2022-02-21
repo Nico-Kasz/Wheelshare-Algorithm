@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import coordData from "./MOCK_DATA.json";
+
 import pin from "./icons/pin.png";
 
 const api = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
@@ -15,7 +17,7 @@ const Pin = () => {
 }
 
 const MyMarker = (props) => {
-    const [coords, setCoords] = useState({ "lat": props.lattitude, "long": props.longitude });
+    const [coords, setCoords] = useState({ "lat": props.latitude, "long": props.longitude });
 
     function myOnDragEnd(ev) {
         setCoords({ long: ev.lngLat[0], lat: ev.lngLat[1] });
@@ -33,17 +35,17 @@ const DisplayMarker = (props) => {
     const [coords, setCoords] = useState({ "lat": -0, "long": -0 });
 
     useEffect(() => {
-        if (props.lattitude != null && props.longitude != null) {
-            setCoords({"lat": props.lattitude, "long": props.longitude});
+        if (props.latitude != null && props.longitude != null) {
+            setCoords({"lat": props.latitude, "long": props.longitude});
         }else {
             getForwardGeocoding(props.address).then((data) => {
                 setCoords({ "long": data.features[0].center[0], "lat": data.features[0].center[1] });
             });
         }
-    }, [props.address, props.lattitude, props.longitude]);
+    }, [props.address, props.latitude, props.longitude]);
 
     return (
-        <MyMarker longitude={coords.long} lattitude={coords.lat}/>
+        <MyMarker longitude={coords.long} latitude={coords.lat}/>
     );
 }
 
@@ -53,13 +55,19 @@ const getForwardGeocoding = async (search_text) => {
     return data;
 }
 
-const point = {"longitude": 40, "lattitude": 20};
-const point2 = {"longitude": -40, "lattitude": -20};
+const point = [40, 20];
+const point2 = [-40, -20];
 const locations = [point, point2];
+
+function locz() {coordData.forEach(el => {
+    locations.push([el.longitude, el.latitude]);
+});} // for(let i = 0; i < 10; i++) {locations.push([i*5,i*-5])}}
+locz();
+
 
 const CreateTestMarkers = (locs) => {
     return locs.map((coord) => 
-        <MyMarker longitude={coord.longitude} lattitude={coord.lattitude} />
+        <MyMarker longitude={coord[0]} latitude={coord[1]} />
     );
 }
 
