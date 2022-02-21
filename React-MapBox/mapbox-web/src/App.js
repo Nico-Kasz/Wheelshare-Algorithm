@@ -21,13 +21,13 @@ const MyMarker = (props) => {
 
     function myOnDragEnd(ev) {
         setCoords({ long: ev.lngLat[0], lat: ev.lngLat[1] });
-        console.log("New Marker Location: " + coords.lat + ', ' + coords.long);
+        console.log(props.className + "'s new Location: " + coords.lat + ', ' + coords.long);
     }
 
     return (
-    <Marker longitude={coords.long} latitude={coords.lat} anchor="bottom" draggable={true} onDragEnd={ myOnDragEnd }>
-                <Pin />
-    </Marker>
+        <Marker longitude={coords.long} latitude={coords.lat} anchor="bottom" draggable={true} onDragEnd={ myOnDragEnd }>
+            <Pin />
+        </Marker>
     )
 }
 
@@ -49,25 +49,17 @@ const DisplayMarker = (props) => {
     );
 }
 
+
 const getForwardGeocoding = async (search_text) => {
     const response = await fetch(api + search_text + '.json?access_token=' + token);
     const data = await response.json();
     return data;
 }
 
-const point = [40, 20];
-const point2 = [-40, -20];
-const locations = [point, point2];
 
-function locz() {coordData.forEach(el => {
-    locations.push([el.longitude, el.latitude]);
-});} // for(let i = 0; i < 10; i++) {locations.push([i*5,i*-5])}}
-locz();
-
-
-const CreateTestMarkers = (locs) => {
-    return locs.map((coord) => 
-        <MyMarker longitude={coord[0]} latitude={coord[1]} />
+const CreateTestMarkers = () => {
+    return coordData.map((coord, index) => 
+        <MyMarker className={"Marker"+index} key={index} longitude={coord.longitude} latitude={coord.latitude} />
     );
 }
 
@@ -92,7 +84,7 @@ export default function Map() {
             >
                 <div id="Markers">
                     <DisplayMarker address="Armstrong Student Center" />
-                    {CreateTestMarkers(locations)}
+                    <CreateTestMarkers/>
                 </div>
             </ReactMapGL>
         </div>
