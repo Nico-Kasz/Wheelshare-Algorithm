@@ -1,69 +1,63 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import { useState, useEffect, useMemo } from 'react';
+import ReactMapGL, { Marker, Source, Layer } from 'react-map-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import { API, TOKEN } from "./constants";
 import coordData from "./MOCK_DATA.json";
-
 import pin from "./icons/pin.png";
 
-const api = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-const token = 'pk.eyJ1Ijoibmljb2thc3oiLCJhIjoiY2t6MGN4djV5MWFuczJwcDFwYW0zMWxhZyJ9.aOdFpJtgU4ow7ascIJDXQA';
 
 const Pin = () => {
     return (
-        <img src={pin} alt="pin" draggable={false} style={{ height: '60px', width: '40px'}} />
-    )
-}
-
-const MyMarker = (props) => {
-    const [coords, setCoords] = useState({ "lat": props.latitude, "long": props.longitude });
-
-    function myOnDragEnd(ev) {
-        setCoords({ long: ev.lngLat[0], lat: ev.lngLat[1] });
-        console.log(props.className + "'s new Location: " + coords.lat + ', ' + coords.long);
-    }
-
-    return (
-        <Marker longitude={coords.long} latitude={coords.lat} anchor="bottom" draggable={true} onDragEnd={ myOnDragEnd }>
-            <Pin />
-        </Marker>
+        <img src={pin} alt="pin" draggable={false} height={'60px'} width={'40px'} />
     )
 }
 
 const DisplayMarker = (props) => {
-    const [coords, setCoords] = useState({ "lat": -0, "long": -0 });
+    const [coords, setCoords] = useState({longitude: 0, latitude: 0}); 
 
     useEffect(() => {
         if (props.latitude != null && props.longitude != null) {
-            setCoords({"lat": props.latitude, "long": props.longitude});
-        }else {
-            getForwardGeocoding(props.address).then((data) => {
-                setCoords({ "long": data.features[0].center[0], "lat": data.features[0].center[1] });
-            });
+            setCoords([props.longitude, props.latitude]);
         }
-    }, [props.address, props.latitude, props.longitude]);
+        else {
+            fetch(API + props.address + '.json?access_token=' + TOKEN)
+            .then(resp => resp.json())
+            .then(json => {
+                setCoords({longitude: json.features[0].center[0], latitude: json.features[0].center[1]});
+            })
+        }
+    }, [coords.longitude, coords.latitude, props.address, props.longitude, props.latitude]);
 
     return (
-        <MyMarker longitude={coords.long} latitude={coords.lat}/>
+        <Marker 
+            longitude={coords.longitude} 
+            latitude={coords.latitude} 
+            anchor="bottom" 
+            draggable={true} 
+            onDragEnd={ ev => setCoords({longitude: ev.lngLat[0], latitude: ev.lngLat[1]})}>
+            <Pin />
+        </Marker>
     );
 }
 
+// const CreateTestMarkers = () => {
+//     return coordData.map((coord, index) => 
+//         <MyMarker className={"Marker"+index} key={index} longitude={coord.longitude} latitude={coord.latitude} />
+//     );
+// }
 
-const getForwardGeocoding = async (search_text) => {
-    const response = await fetch(api + search_text + '.json?access_token=' + token);
-    const data = await response.json();
-    return data;
-}
-
-
-const CreateTestMarkers = () => {
-    return coordData.map((coord, index) => 
-        <MyMarker className={"Marker"+index} key={index} longitude={coord.longitude} latitude={coord.latitude} />
-    );
-}
+/*
+const data = useMemo(() => {
+    return coords; 
+}, [coords]);
 
 
+<Source type="geojson" data={data}>
+                    <Layer {...heatmapLayer} />
+                </Source>
+*/
 
 export default function Map() {
     const [viewport, setViewport] = useState({
@@ -74,17 +68,21 @@ export default function Map() {
         zoom: 14
     });
 
+
     return (
         <div>
             <ReactMapGL
                 {...viewport}
-                mapboxApiAccessToken={token}
+                mapboxApiAccessToken={TOKEN}
                 mapStyle="mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
                 onViewportChange={(viewport) => { setViewport(viewport); }}
             >
+
+                
+
                 <div id="Markers">
                     <DisplayMarker address="Armstrong Student Center" />
-                    <CreateTestMarkers/>
+                    
                 </div>
             </ReactMapGL>
         </div>
