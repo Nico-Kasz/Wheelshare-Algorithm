@@ -18,20 +18,22 @@ export const heatmapLayer = {
       ['linear'],
       ['heatmap-density'],
       0,
-      'rgba(33,102,172,0)',
-      0.2,
-      'rgb(103,169,207)',
-      0.4,
-      'rgb(209,229,240)',
+      'rgba(255,0,0, 0)',
+      0.05,
+      'rgb(255,0,0)',
+      0.3,
+      'rgb(255,155,0)',
       0.6,
-      'rgb(253,219,199)',
-      0.8,
-      'rgb(239,138,98)',
+      'rgb(255,213,0)',
+      0.85,
+      'rgb(255,255,0)',
       0.9,
-      'rgb(255,201,101)'
+      'rgb(104,255,0)',
+      0.95,
+      'rgb(0,255,0)'
     ],
     // Adjust the heatmap radius by zoom level
-    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, 2, 2],
+    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, 8, 10],
     // Transition from heatmap to circle layer by zoom level
     'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 3]
   }
