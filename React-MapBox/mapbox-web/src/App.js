@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMapGL, { Marker, Source, Layer } from 'react-map-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 import {heatmapLayer} from './map-style';
@@ -58,11 +58,9 @@ export default function Map() {
         longitude: -84.73455522976074,
         zoom: 14
     });
-    const data = useMemo(() => {
-        return require('./data.geojson');
-    });
     
-
+    const data =  require('./data.geojson');
+    
     return (
         <div>
             <ReactMapGL
