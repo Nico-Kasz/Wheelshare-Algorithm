@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { findAllByRole, getAllByAltText, getByRole, render, screen } from '@testing-library/react';
 import Map from './App';
 
-test('renders learn react link', () => {
+test('renders marker at Armstrong', () => {
   render(<Map />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  // const markerTest = screen.getByRole('Marker');
+  // expect(markerTest).toHaveAttribute("longitude", 84.73332)
+  // expect(markerTest).toHaveAttribute("latitude", 39.507726)
 });

@@ -20,7 +20,7 @@ const DisplayMarker = (props) => {
 
     useEffect(() => {
         if (!(props.latitude == null || props.longitude == null)) {
-            setCoords([props.longitude, props.latitude]);
+            setCoords({longitude: props.longitude, latitude: props.latitude});
         }
         else {
             // PARSE ADDRESS TODO
@@ -30,15 +30,19 @@ const DisplayMarker = (props) => {
                 setCoords({longitude: json.features[0].center[0], latitude: json.features[0].center[1]});
             })
         }
-    }, [coords.longitude, coords.latitude, props.address, props.longitude, props.latitude]);
+    }, [props.address, props.longitude, props.latitude]);
+
+    const markerOnDragEvent = (ev) => {
+        setCoords({longitude: ev.lngLat[0], latitude: ev.lngLat[1]})
+    }
 
     return (
         <Marker 
             longitude={coords.longitude} 
             latitude={coords.latitude} 
             anchor="bottom" 
-            draggable={true} // SETCOORDS IS NOT WORKING ONLY AT THIS SPOT????
-            onDragEnd={ ev => setCoords({longitude: 0, latitude: 0}) }>
+            draggable={true} 
+            onDragEnd={ ev => markerOnDragEvent(ev)}>
             <Pin />
         </Marker>
     );
