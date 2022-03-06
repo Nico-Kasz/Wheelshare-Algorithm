@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import ReactMapGL, { Marker, Source, Layer } from 'react-map-gl';
 import 'bootstrap/dist/css/bootstrap.css';
+import {heatmapLayer} from './map-style';
 
 import { API, TOKEN } from "./constants";
-import coordData from "./MOCK_DATA.json";
+//import coordData from "./MOCK_DATA.json";
 import pin from "./icons/pin.png";
 
 
@@ -18,10 +19,11 @@ const DisplayMarker = (props) => {
     const [coords, setCoords] = useState({longitude: 0, latitude: 0}); 
 
     useEffect(() => {
-        if (props.latitude != null && props.longitude != null) {
+        if (!(props.latitude == null || props.longitude == null)) {
             setCoords([props.longitude, props.latitude]);
         }
         else {
+            // PARSE ADDRESS TODO
             fetch(API + props.address + '.json?access_token=' + TOKEN)
             .then(resp => resp.json())
             .then(json => {
@@ -35,8 +37,8 @@ const DisplayMarker = (props) => {
             longitude={coords.longitude} 
             latitude={coords.latitude} 
             anchor="bottom" 
-            draggable={true} 
-            onDragEnd={ ev => setCoords({longitude: ev.lngLat[0], latitude: ev.lngLat[1]})}>
+            draggable={true} // SETCOORDS IS NOT WORKING ONLY AT THIS SPOT????
+            onDragEnd={ ev => setCoords({longitude: 0, latitude: 0}) }>
             <Pin />
         </Marker>
     );
@@ -48,17 +50,6 @@ const DisplayMarker = (props) => {
 //     );
 // }
 
-/*
-const data = useMemo(() => {
-    return coords; 
-}, [coords]);
-
-
-<Source type="geojson" data={data}>
-                    <Layer {...heatmapLayer} />
-                </Source>
-*/
-
 export default function Map() {
     const [viewport, setViewport] = useState({
         width: '100vw',
@@ -67,7 +58,10 @@ export default function Map() {
         longitude: -84.73455522976074,
         zoom: 14
     });
-
+    const data = useMemo(() => {
+        return require('./data.geojson');
+    });
+    
 
     return (
         <div>
@@ -77,8 +71,11 @@ export default function Map() {
                 mapStyle="mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
                 onViewportChange={(viewport) => { setViewport(viewport); }}
             >
-
-                
+                {data && (
+                    <Source type="geojson" data={data}>
+                        <Layer {...heatmapLayer}/>
+                    </Source>
+                )}   
 
                 <div id="Markers">
                     <DisplayMarker address="Armstrong Student Center" />
