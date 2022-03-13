@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Source, Layer } from 'react-map-gl';
+import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 import {heatmapLayer} from './map-style';
+import { parseString } from "xml2js"; 
 
 import { API, TOKEN } from "./constants";
 //import coordData from "./MOCK_DATA.json";
@@ -48,6 +49,35 @@ const DisplayMarker = (props) => {
     );
 }
 
+const PullOSM = (props) => {
+    console.log('pulling osm');
+    useEffect(() => {
+        fetch('https://overpass-api.de/api/map?bbox=-84.74498,39.50838,-84.73334,39.51204')
+        .then((response) => response.text())
+        .then((textResponse) => {
+            // parsing xml data
+            parseString(textResponse, function (err, results) {
+                
+            console.log(results);
+            console.log(results.osm.way.length);
+
+
+            for(let i = 0; i < results.osm.way.length; i++) {
+                for(let j = 0; j < results.osm.way[i].tags.length; j++) {
+                    let k = results.osm.way[i].tags[j].k;
+                    if (k === "slope" || k === "incline") {
+                        console.log(results.osm.way[i].tags[j].v);
+                        break;
+                    }
+                }
+            }
+            });
+        })
+    }, []);
+    return <div/>
+}
+
+
 // const CreateTestMarkers = () => {
 //     return coordData.map((coord, index) => 
 //         <MyMarker className={"Marker"+index} key={index} longitude={coord.longitude} latitude={coord.latitude} />
@@ -58,12 +88,15 @@ export default function Map() {
     const [viewport, setViewport] = useState({
         width: '100vw',
         height: '100vh',
+        hash: true,
         latitude: 39.50882818527073,
         longitude: -84.73455522976074,
-        zoom: 14
+        zoom: 14,
+        minPitch: 0,
+        maxPitch: 30
     });
     
-    const data =  require('./data.geojson');
+    const data =  null;//require('./data.geojson');
     
     return (
         <div>
@@ -81,8 +114,12 @@ export default function Map() {
 
                 <div id="Markers">
                     <DisplayMarker address="Armstrong Student Center" />
-                    
                 </div>
+                
+                <PullOSM/>
+
+                <GeolocateControl trackUserLocation={true}/>
+                
             </ReactMapGL>
         </div>
         );
