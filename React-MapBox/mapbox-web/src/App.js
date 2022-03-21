@@ -25,7 +25,7 @@ const DisplayMarker = (props) => {
         }
         else {
             // PARSE ADDRESS TODO
-            fetch(API + props.address + '.json?access_token=' + TOKEN)
+            fetch(API + encodeURIComponent(props.address) + '.json?access_token=' + TOKEN)
             .then(resp => resp.json())
             .then(json => {
                 setCoords({longitude: json.features[0].center[0], latitude: json.features[0].center[1]});
@@ -58,15 +58,23 @@ const PullOSM = (props) => {
             // parsing xml data
             parseString(textResponse, function (err, results) {
                 
+            // returns the json from xml
             console.log(results);
+            // returns # of paths plotted from osm data
             console.log(results.osm.way.length);
 
-
+            // itterates through the paths, identifies which paths have 'incline' or 'slope' attrib and prints it
             for(let i = 0; i < results.osm.way.length; i++) {
-                for(let j = 0; j < results.osm.way[i].tags.length; j++) {
-                    let k = results.osm.way[i].tags[j].k;
+                console.log("way: " + i);
+
+                console.log(results.osm.way[872].tag);
+
+                if (results.osm.way[i].tag === undefined) continue;
+
+                for(let j = 0; j < results.osm.way[i].tag.length; j++) {
+                    let k = results.osm.way[i].tag[j].$.k;
                     if (k === "slope" || k === "incline") {
-                        console.log(results.osm.way[i].tags[j].v);
+                        console.log(results.osm.way[i].tag[j].$.v);
                         break;
                     }
                 }
@@ -96,7 +104,7 @@ export default function Map() {
         maxPitch: 30
     });
     
-    const data =  null;//require('./data.geojson');
+    const data =  require('./3.21.22 test data.geojson');//require('./data.geojson');
     
     return (
         <div>
@@ -116,7 +124,7 @@ export default function Map() {
                     <DisplayMarker address="Armstrong Student Center" />
                 </div>
                 
-                <PullOSM/>
+                {/* <PullOSM/> */}
 
                 <GeolocateControl trackUserLocation={true}/>
                 
