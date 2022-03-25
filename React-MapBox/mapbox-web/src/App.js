@@ -126,7 +126,7 @@ export default function Map() {
                 
                 {/* <PullOSM/> */}
 
-                <GeolocateControl trackUserLocation={true}/>
+                <GeolocateControl trackUserLocation={true} maxZoom={22}/>
                 
             </ReactMapGL>
         </div>
