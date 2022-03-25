@@ -100,6 +100,7 @@ export default function Map() {
         latitude: 39.50882818527073,
         longitude: -84.73455522976074,
         zoom: 14,
+        maxZoom: 20,
         minPitch: 0,
         maxPitch: 30
     });
