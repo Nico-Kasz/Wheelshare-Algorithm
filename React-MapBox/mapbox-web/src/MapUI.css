@@ -1,0 +1,30 @@
+.UI-Left {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.UI-Upper-Left {
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+
+    width: 35%;
+    height: 20vh;
+
+    border-radius: 10%;
+    border-color: black;
+    border-width: 5px;
+}
+
+.UI-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.UI-Search {
+    right: 10%;
+    width: 80%;
+    margin-bottom: 5%;
+}
+
