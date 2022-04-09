@@ -16,6 +16,8 @@ const Pin = () => {
     )
 }
 
+
+
 const DisplayMarker = (props) => {
     const [coords, setCoords] = useState({longitude: 0, latitude: 0}); 
 
@@ -85,14 +87,7 @@ const PullOSM = (props) => {
     return <div/>
 }
 
-
-// const CreateTestMarkers = () => {
-//     return coordData.map((coord, index) => 
-//         <MyMarker className={"Marker"+index} key={index} longitude={coord.longitude} latitude={coord.latitude} />
-//     );
-// }
-
-export default function Map() {
+export default function Map(props) {
     const [viewport, setViewport] = useState({
         width: '100vw',
         height: '100vh',
@@ -105,8 +100,10 @@ export default function Map() {
         maxPitch: 30
     });
     
-    const data =  require('./3.21.22 test data.geojson');//require('./data.geojson');
+    const data =  require('./3.28.22 gps data.geojson');//require('./data.geojson');
     
+    const start = props.start.value === undefined ? null : props.start.value;
+
     return (
         <div>
             <ReactMapGL
@@ -123,11 +120,12 @@ export default function Map() {
 
                 <div id="Markers">
                     <DisplayMarker address="Armstrong Student Center" />
+                    <DisplayMarker address={start} />
                 </div>
                 
                 {/* <PullOSM/> */}
 
-                {/*<GeolocateControl trackUserLocation={true} maxZoom={22}/>*/}
+                {<GeolocateControl trackUserLocation={true} maxZoom={22}/>}
                 
             </ReactMapGL>
         </div>
