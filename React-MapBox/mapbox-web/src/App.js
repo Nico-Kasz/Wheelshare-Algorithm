@@ -101,13 +101,6 @@ export default function App() {
 
 
     function UI() {
-        function handleStartChange(event) {
-            
-        }
-
-        function handleEndChange(event) {
-            
-        }
 
         function handleSubmit(event) {
             // Set Refs such to display markers
@@ -137,11 +130,11 @@ export default function App() {
                         <Container >
                             <Form onSubmit={handleSubmit}>
                             <Row>
-                                <input type="text" className="form-control UI-Search" id="fromLocation" placeholder='Starting point' onChange={handleStartChange}/>
+                                <input type="text" className="form-control UI-Search" id="fromLocation" placeholder='Starting point'/>
                                 <input type="submit" className='btn-primary UI-Submit'  value="Search" />
                             </Row>
                             <Row>
-                                <input type="text" className="form-control UI-Search" id="toLocation" placeholder='Ending point' onChange={handleEndChange}/>
+                                <input type="text" className="form-control UI-Search" id="toLocation" placeholder='Ending point'/>
                             </Row>
                             </Form>
                         </Container>
