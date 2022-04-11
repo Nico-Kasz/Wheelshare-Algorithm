@@ -158,7 +158,7 @@ export default function App() {
             maxPitch: 30
         });
         
-        const data =  require('./3.28.22 gps data.geojson');//require('./data.geojson');
+        const data =  require('./4.10.22 gps data.geojson');//require('./data.geojson');
 
         return (
             <div>
