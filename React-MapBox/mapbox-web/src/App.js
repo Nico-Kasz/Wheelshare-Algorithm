@@ -1,20 +1,23 @@
 import * as React from 'react';
 import { useState, useEffect, useRef} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
-import 'bootstrap/dist/css/bootstrap.css';
 import {heatmapLayer} from './map-style';
-//import { parseString } from "xml2js"; 
 
+
+
+// Constants and Image Imports
 import { API, TOKEN } from "./constants";
-//import coordData from "./MOCK_DATA.json";
-import pin from "./icons/pin.png";
+import pin from "./Assets/Images/pin.png";
 
 // UI specific imports
+import 'bootstrap/dist/css/bootstrap.css';
 import './MapUI.css';
 import { Form, Container, Modal, Row } from 'react-bootstrap';
 
 // Bad way to make sure there is an update when search is hit again
 let count = 0;
+
+
 
 const Pin = () => {
     return (
@@ -60,41 +63,6 @@ const DisplayMarker = (props) => {
     );
 }
 
-// const PullOSM = (props) => {
-//     console.log('pulling osm');
-//     useEffect(() => {
-//         fetch('https://overpass-api.de/api/map?bbox=-84.74498,39.50838,-84.73334,39.51204')
-//         .then((response) => response.text())
-//         .then((textResponse) => {
-//             // parsing xml data
-//             parseString(textResponse, function (err, results) {
-                
-//             // returns the json from xml
-//             console.log(results);
-//             // returns # of paths plotted from osm data
-//             console.log(results.osm.way.length);
-
-//             // itterates through the paths, identifies which paths have 'incline' or 'slope' attrib and prints it
-//             for(let i = 0; i < results.osm.way.length; i++) {
-//                 console.log("way: " + i);
-
-//                 console.log(results.osm.way[872].tag);
-
-//                 if (results.osm.way[i].tag === undefined) continue;
-
-//                 for(let j = 0; j < results.osm.way[i].tag.length; j++) {
-//                     let k = results.osm.way[i].tag[j].$.k;
-//                     if (k === "slope" || k === "incline") {
-//                         console.log(results.osm.way[i].tag[j].$.v);
-//                         break;
-//                     }
-//                 }
-//             }
-//             });
-//         })
-//     }, []);
-//     return <div/>
-// }
 export default function App() {
     const startRef = useRef(null);
     const endRef = useRef(null);
@@ -158,7 +126,7 @@ export default function App() {
             maxPitch: 30
         });
         
-        const data =  require('./4.10.22 gps data.geojson');//require('./data.geojson');
+        const data =  require('./Assets/Geojsons/4.20.22 gps data.geojson');//require('./data.geojson');
 
         return (
             <div>
@@ -188,7 +156,8 @@ export default function App() {
             </div>
             );
     }
-    return (
+    let renderMap = true;
+    return  !renderMap? (<UI/>) : (
         <div>
             <Map />
             <UI />

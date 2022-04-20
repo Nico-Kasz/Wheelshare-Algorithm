@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Route from './routing/route.js';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
         <div>       {/* Render UI alongside map and overlay */}
-            <App />
+            <App  />
+            <Route/>
         </div>
   </React.StrictMode>,
   document.getElementById('root')
