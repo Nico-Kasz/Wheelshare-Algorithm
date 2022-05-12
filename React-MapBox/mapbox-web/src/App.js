@@ -3,7 +3,7 @@ import { useState, useEffect, useRef} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
 import {heatmapLayer} from './map-style';
 
-
+// This is thomas lol
 
 // Constants and Image Imports
 import { API, TOKEN } from "./constants";
@@ -156,7 +156,7 @@ export default function App() {
             </div>
             );
     }
-    let renderMap = false;
+    let renderMap = true;
     return  !renderMap? (<UI/>) : (
         <div>
             <Map />
