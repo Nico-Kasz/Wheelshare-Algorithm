@@ -156,7 +156,7 @@ export default function App() {
             </div>
             );
     }
-    let renderMap = true;
+    let renderMap = false;
     return  !renderMap? (<UI/>) : (
         <div>
             <Map />

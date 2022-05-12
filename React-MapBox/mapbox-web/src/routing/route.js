@@ -31,16 +31,19 @@ export default function Route() {
                 try{
                     way.tag.forEach(
                         tag => { 
+                            // Check for attribute "incline" or "slope" => some return "up" or "down"
                             if((tag.$.k === "incline" || tag.$.k === "slope") && !isNaN(tag.$.v)) {
                                 count++;
                                 sum+=Number(tag.$.v);
                                 //console.log("Incline:" + tag.$.v);
                             }
                             })
-                // Way does not have any tags
+                // way does not have any tags
                 } catch(error){/*console.log(error);*/ }
             });
         console.log("Number of measured slopes: " + count + "\nAverage slope: " + (sum/count));
+
+
     });
-    return (<div></div>);
+    return (<h1 style={{textAlign: "center"}}>Running Routing in background</h1>);
 }
