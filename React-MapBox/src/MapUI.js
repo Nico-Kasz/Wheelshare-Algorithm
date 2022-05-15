@@ -1,12 +1,11 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MapUI.css';
 
 import { Form, Container, Modal, Row } from 'react-bootstrap';
 
 
-export default function UI() {
+export default function MapUI() {
 
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');

@@ -3,8 +3,6 @@ import { useState, useEffect, useRef} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
 import {heatmapLayer} from './map-style';
 
-// This is thomas lol
-
 // Constants and Image Imports
 import { API, TOKEN } from "./constants";
 import pin from "./Assets/Images/pin.png";
@@ -17,15 +15,11 @@ import { Form, Container, Modal, Row } from 'react-bootstrap';
 // Bad way to make sure there is an update when search is hit again
 let count = 0;
 
-
-
 const Pin = () => {
     return (
         <img src={pin} alt="pin" draggable={false} height={'60px'} width={'40px'} style={{position: 'fixed', bottom: 0, right: -20 }}/>
     )
 }
-
-
 
 const DisplayMarker = (props) => {
     const [coords, setCoords] = useState({longitude: 0, latitude: 0}); 
