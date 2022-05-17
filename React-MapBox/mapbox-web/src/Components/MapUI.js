@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './MapUI.css';
+import '../Assets/CSS/MapUI.css';
 
 import { Form, Container, Modal, Row } from 'react-bootstrap';
 

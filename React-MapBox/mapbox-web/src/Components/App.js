@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useState, useEffect, useRef} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
-import {heatmapLayer} from './map-style';
+import {heatmapLayer} from './heatmap.ts';
 
 
 
 // Constants and Image Imports
-import { API, TOKEN } from "./constants";
-import pin from "./Assets/Images/pin.png";
+import { API, TOKEN } from "./constants.js";
+import pin from "../Assets/Images/pin.png";
 
 // UI specific imports
 import 'bootstrap/dist/css/bootstrap.css';
-import './MapUI.css';
+import '../Assets/CSS/MapUI.css';
 import { Form, Container, Modal, Row } from 'react-bootstrap';
 
 // Bad way to make sure there is an update when search is hit again
@@ -126,7 +126,7 @@ export default function App() {
             maxPitch: 30
         });
         
-        const data =  require('./Assets/Geojsons/4.20.22 gps data.geojson');//require('./data.geojson');
+        const data =  require('../Assets/Geojsons/4.20.22 gps data.geojson');//require('./data.geojson');
 
         return (
             <div>
@@ -156,7 +156,7 @@ export default function App() {
             </div>
             );
     }
-    let renderMap = false;
+    let renderMap = true;
     return  !renderMap? (<UI/>) : (
         <div>
             <Map />
