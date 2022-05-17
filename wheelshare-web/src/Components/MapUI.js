@@ -1,9 +1,8 @@
 import React from 'react';
 import {useRef} from 'react';
+import { Form, Container, Modal, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Assets/CSS/MapUI.css';
-
-import { Form, Container, Modal, Row } from 'react-bootstrap';
 
 
 export default function UI() {
@@ -23,7 +22,7 @@ export default function UI() {
         // Stop script from refreshing page
         event.preventDefault(); 
         // Print Submitted
-        console.log("updating marker");
+        console.log("updating markers");
 
     }
 

@@ -1,59 +1,85 @@
 import * as React from 'react';
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
-import {heatmapLayer} from './heatmap.ts';
+import {heatmapLayer} from './heatmap';
+import Pin from './Pin';
 
-
-
-// Constants and Image Imports
-import { API, TOKEN } from "./constants.js";
-import pin from "../Assets/Images/pin.png";
+// Constants Imports
+import { API, TOKEN } from "./constants";
 
 
 
 
-const Pin = () => {
-    return (
-        <img src={pin} alt="pin" draggable={false} height={'60px'} width={'40px'} style={{position: 'fixed', bottom: 0, right: -20 }}/>
-    )
+var heatmapOn = false;
+const heatmapData =  require('../Assets/Geojsons/4.20.22 gps data.geojson');
+
+// {name: _, address: _, longitude: _, latitude: _}
+const Markers = [{name: "StartMarker"}, {name: "EndMarker"}, {latitude: 39.50882818527073, longitude: -84.73455522976074, name: "TestMarker"}];
+
+const setStartAddress   = (address) => {Markers[0].address = address;}
+const setEndAddress     = (address) => {Markers[1].address = address;}
+
+
+const DisplayHeatmap = () => {
+    if (heatmapOn)
+        return (
+            heatmapData && (
+            <Source type="geojson" data={heatmapData}>
+            <Layer {...heatmapLayer}/>
+            </Source>)
+        )
 }
 
 
-
-const DisplayMarker = (props) => {
-    const [coords, setCoords] = useState({longitude: 0, latitude: 0}); 
-
-    useEffect(() => {
-        if (!(props.latitude == null || props.longitude == null)) {
-            setCoords({longitude: props.longitude, latitude: props.latitude});
+const DisplayMarkers = () => {
+    return Markers.map(function (marker) {
+        if (!('latitude' in marker && 'longitude' in marker)) {
+            if ('address' in marker)
+                // Forward Geocode - TODO - Async Wait => set marker
+                //marker = GetLocationByAddress(marker.address).then();
+                ;
+            else
+                // Blank marker - nothing to display
+                ;
         }
-        else {
-            fetch(API + encodeURIComponent(props.address) + '.json?access_token=' + TOKEN)
+        //Since GeoCoding doesnt work as of now, a return is put in place to prevent crashing
+        
+
+
+        // Marker on drag event => moves to location it is dropped at - TODO - throws exception
+        const markerOnDragEvent = (ev) => {
+            marker = {name: marker.name, address: marker.address, longitude: ev.lngLat[0], latitude: ev.lngLat[1]};
+            //marker.longitude = ev.lngLat[0];
+            //marker.latitude =  ev.lngLat[1];
+        }
+
+        return(
+            <Marker 
+                className={'name' in marker ? marker.name : "Marker"}
+                longitude={'longitude' in marker? marker.longitude : 0}  // The in statements are placeholders
+                latitude={'latitude' in marker? marker.latitude : 0} 
+                anchor="bottom"
+                key = {marker.name}
+                pitchAlignment= 'map'
+                draggable={true}
+                onDragEnd={ ev => marker = markerOnDragEvent(marker, ev)}>
+                <Pin/> 
+            </Marker>)
+        }
+    );
+
+}
+
+const GetLocationByAddress  = (address, name = "Marker") => {
+    fetch(API + encodeURIComponent(address) + '.json?access_token=' + TOKEN)
             .then(resp => resp.json())
             .then(json => {
                 if (json.features[0] !== undefined)           // Just incase
-                    setCoords({longitude: json.features[0].center[0], latitude: json.features[0].center[1]});
+                    return {name: name, address: address, longitude: json.features[0].center[0], latitude: json.features[0].center[1]};
             })
-        }
-    }, [props.address, props.longitude, props.latitude]);
-
-    const markerOnDragEvent = (ev) => {
-        setCoords({longitude: ev.lngLat[0], latitude: ev.lngLat[1]})
-    }
-    
-    return (
-        <Marker 
-            longitude={coords.longitude} 
-            latitude={coords.latitude} 
-            anchor="bottom"
-            pitchAlignment= 'map'
-            draggable={true} 
-            onDragEnd={ ev => markerOnDragEvent(ev)}
-            style = {{display : props.address == null? "none" : "block" }} >
-            <Pin />
-        </Marker>
-    );
 }
+
+
 
 export default function Map() {
         const [viewport, setViewport] = useState({
@@ -68,7 +94,6 @@ export default function Map() {
             maxPitch: 30
         });
         
-        const data =  require('../Assets/Geojsons/4.20.22 gps data.geojson');
 
         return (
             <div>
@@ -79,18 +104,12 @@ export default function Map() {
                     mapStyle="mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
                     onViewportChange={(viewport) => { setViewport(viewport); }}
                 >
-                    {data && (
-                        <Source type="geojson" data={data}>
-                            <Layer {...heatmapLayer}/>
-                        </Source>
-                    )}   
 
-                    <div id="Markers">
-                        <DisplayMarker address={"placeholder"}/>
-                        <DisplayMarker address={"placeholder"}/>
-                    </div>
+                {DisplayHeatmap()}
+
+                {DisplayMarkers()}
                     
-                    {<GeolocateControl trackUserLocation={true} maxZoom={22}/>}
+                <GeolocateControl trackUserLocation={true} maxZoom={22}/>
                     
                 </ReactMapGL>
             </div>
