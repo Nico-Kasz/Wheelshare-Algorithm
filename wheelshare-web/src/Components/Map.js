@@ -16,10 +16,10 @@ const heatmapData =  require('../Assets/Geojsons/4.20.22 gps data.geojson'); // 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{name: "StartMarker"}, {name: "EndMarker"}];
 
-const setStartAddress   = (address) => {Markers[0].address = address; updateMap()}
-const setEndAddress     = (address) => {Markers[1].address = address; updateMap()}
-const toggleHeatMap     = ()        => {heatmapOn = !heatmapOn}
-const updateMap         = ()        => {}
+const setAddress        = (index, address)  => {Markers[index].address = address; updateMap()}
+const toggleHeatMap     = ()                => {heatmapOn = !heatmapOn}
+const updateMap         = ()                => {}
+
 
 const DisplayHeatmap = () => {
     if (heatmapOn)
@@ -31,23 +31,31 @@ const DisplayHeatmap = () => {
         )
 }
 
-// TODO => Update Markes using markers=markers.map then return based on the new values
+
+
+// TODO => Move Update outside of Display to reduce lag
 const DisplayMarkers = () => {
     return Markers.map(function (marker) {
+
+        // Update marker positions 
         if (!('latitude' in marker && 'longitude' in marker)) {
             if ('address' in marker) {
-                // Forward Geocode - TODO - Async Wait => set marker
+                // Forward Geocode - TODO - Async Wait => set marker 
+                // - can be combined with GetLocationByAddress for simplicity
                 //marker = GetLocationByAddress(marker.address, marker.name);
             } else
-                // Blank marker - nothing to display
+                // Blank marker - nothing to update
                 return null;
         } 
 
-        // Marker on drag event => moves to location it is dropped at - TODO - Marker does not set
+        // TODO - Marker on drag event => moves to location it is dropped at - Marker does not set
         const markerOnDragEvent = (ev) => {
+            // Something like this V V 
+            // UpdateMarker(marker.name, ev.lngLat[0], ev.lngLat[1]);
             marker= {name: marker.name, address: marker.address, longitude: ev.lngLat[0], latitude: ev.lngLat[1]};
         }
 
+        // Return the marker for display
         return(
             <Marker 
                 className={'name' in marker ? marker.name : "Marker"}
@@ -131,4 +139,4 @@ export default function Map() {
             );
 }
 
-export {setStartAddress, setEndAddress, toggleHeatMap};
+export {setAddress, toggleHeatMap};
