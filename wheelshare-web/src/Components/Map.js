@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState} from 'react';
+import { useState } from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
 import {heatmapLayer} from './heatmap';
-import Pin from './Pin.js';
+import Pin from './Pin';
 
 // Constants Imports
 import { API, TOKEN } from "./constants";
@@ -11,14 +11,15 @@ import { API, TOKEN } from "./constants";
 
 
 var heatmapOn = false;
-const heatmapData =  require('../Assets/Geojsons/4.20.22 gps data.geojson');
+const heatmapData =  require('../Assets/Geojsons/4.20.22 gps data.geojson'); // Temp data
 
 // {name: _, address: _, longitude: _, latitude: _}
-const Markers = [{name: "StartMarker", address: "Billy ave"}, {name: "EndMarker"}, {latitude: 39.50882818527073, longitude: -84.73455522976074, name: "TestMarker"}];
+const Markers = [{name: "StartMarker"}, {name: "EndMarker"}];
 
-const setStartAddress   = (address) => {Markers[0].address = address;}
-const setEndAddress     = (address) => {Markers[1].address = address;}
-
+const setStartAddress   = (address) => {Markers[0].address = address; updateMap()}
+const setEndAddress     = (address) => {Markers[1].address = address; updateMap()}
+const toggleHeatMap     = ()        => {heatmapOn = !heatmapOn}
+const updateMap         = ()        => {}
 
 const DisplayHeatmap = () => {
     if (heatmapOn)
@@ -30,37 +31,30 @@ const DisplayHeatmap = () => {
         )
 }
 
-// Might have to have for let i, then use map to display all 
+// TODO => Update Markes using markers=markers.map then return based on the new values
 const DisplayMarkers = () => {
     return Markers.map(function (marker) {
-        console.log(marker);
         if (!('latitude' in marker && 'longitude' in marker)) {
             if ('address' in marker) {
                 // Forward Geocode - TODO - Async Wait => set marker
                 //marker = GetLocationByAddress(marker.address, marker.name);
             } else
                 // Blank marker - nothing to display
-                ;
+                return null;
         } 
-        //Since GeoCoding doesnt work as of now, the marker data is logged
-        console.log(marker);
 
-
-        // Marker on drag event => moves to location it is dropped at - TODO - throws exception
+        // Marker on drag event => moves to location it is dropped at - TODO - Marker does not set
         const markerOnDragEvent = (ev) => {
-            marker = {name: marker.name, address: marker.address, longitude: ev.lngLat[0], latitude: ev.lngLat[1]};
-            //marker.longitude = ev.lngLat[0];
-            //marker.latitude =  ev.lngLat[1];
-            //console.log(ev);
+            marker= {name: marker.name, address: marker.address, longitude: ev.lngLat[0], latitude: ev.lngLat[1]};
         }
 
         return(
             <Marker 
                 className={'name' in marker ? marker.name : "Marker"}
-                longitude={'longitude' in marker? marker.longitude : 0} 
+                longitude={'longitude' in marker? marker.longitude : 0}  // in statements are placeholders unitl Geocoding is done
                 latitude={'latitude' in marker? marker.latitude : 0} 
                 anchor= 'bottom'
-                key = {marker.name}         
+                key = {marker.name}        // These need to be unique 
                 pitchAlignment= 'map'
                 draggable={true}
                 onDragEnd={ ev => markerOnDragEvent(ev)}>
@@ -71,16 +65,21 @@ const DisplayMarkers = () => {
 
 }
 
+
+
 const GetLocationByAddress = (address, name) => {
-    let marker = 
-        fetch(API + encodeURIComponent(address) + '.json?access_token=' + TOKEN)
+    return fetch(API + encodeURIComponent(address) + '.json?access_token=' + TOKEN)
                 .then(resp => resp.json())
                 .then(json => {
                     console.log(json);
                     if (json.features[0] !== undefined)           // Just incase
-                        return {name: name===undefined? "Marker" : name, address: address, longitude: json.features[0].center[0], latitude: json.features[0].center[1]};
-                })
-    return marker;
+                        return {
+                            name: name === undefined? "Marker" : name, 
+                            address: address, 
+                            longitude: json.features[0].center[0], 
+                            latitude: json.features[0].center[1]
+                        }
+                });
 }
 
 
@@ -97,16 +96,28 @@ export default function Map() {
             minPitch: 0,
             maxPitch: 30
         });
-        
+
+        const settings = {
+            dragPan: true,
+            dragRotate: false,
+            scrollZoom: true,
+            touchZoom: false,
+            touchRotate: false,
+            keyboard: true,
+            doubleClickZoom: false
+        }
+
 
         return (
             <div>
                 
                 <ReactMapGL
                     {...viewport}
-                    mapboxApiAccessToken={TOKEN}
-                    mapStyle="mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
-                    onViewportChange={(viewport) => { setViewport(viewport); }}
+                    {...settings}
+                    mapboxApiAccessToken = {TOKEN}
+                    mapStyle = "mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
+                    onViewportChange = {(viewport) => { setViewport(viewport); }}
+                    onDblClick = {(ev) => Markers[2] = {name: "Marked Location", longitude: ev.lngLat[0], latitude: ev.lngLat[1]}}
                 >
 
                 {DisplayHeatmap()}
@@ -120,4 +131,4 @@ export default function Map() {
             );
 }
 
-export {setStartAddress, setEndAddress};
+export {setStartAddress, setEndAddress, toggleHeatMap};

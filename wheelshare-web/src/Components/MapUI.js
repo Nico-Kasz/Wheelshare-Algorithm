@@ -8,7 +8,7 @@ import '../Assets/CSS/MapUI.css';
 export default function UI() {
  
     function handleSubmit(event) {
-        // Set Refs such to display markers
+        // Sends values to Map 
         // - after checking if values are null/empty
         if (event.target[0].value !== null && event.target[0].value !== '')
             setStartAddress(event.target[0].value);
@@ -19,7 +19,7 @@ export default function UI() {
         // Stop script from refreshing page
         event.preventDefault(); 
         // Print Submitted
-        console.log("updating markers");
+        console.log("updating start & end markers");
 
     }
 
