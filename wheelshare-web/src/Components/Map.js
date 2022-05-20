@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState} from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Source, Layer } from 'react-map-gl';
 import {heatmapLayer} from './heatmap';
-import Pin from './Pin.tsx';
+import Pin from './Pin.js';
 
 // Constants Imports
 import { API, TOKEN } from "./constants";
@@ -37,8 +37,7 @@ const DisplayMarkers = () => {
         if (!('latitude' in marker && 'longitude' in marker)) {
             if ('address' in marker) {
                 // Forward Geocode - TODO - Async Wait => set marker
-                //marker = GetLocationByAddress(marker.address).then();
-                marker = GetLocationByAddress(marker.address, marker.name);
+                //marker = GetLocationByAddress(marker.address, marker.name);
             } else
                 // Blank marker - nothing to display
                 ;
@@ -58,10 +57,10 @@ const DisplayMarkers = () => {
         return(
             <Marker 
                 className={'name' in marker ? marker.name : "Marker"}
-                longitude={'longitude' in marker? marker.longitude : 0}  // The "in" statements are placeholders
+                longitude={'longitude' in marker? marker.longitude : 0} 
                 latitude={'latitude' in marker? marker.latitude : 0} 
-                anchor="bottom"
-                key = {marker.name}         // Make this unique TODO
+                anchor= 'bottom'
+                key = {marker.name}         
                 pitchAlignment= 'map'
                 draggable={true}
                 onDragEnd={ ev => markerOnDragEvent(ev)}>
@@ -120,3 +119,5 @@ export default function Map() {
             </div>
             );
 }
+
+export {setStartAddress, setEndAddress};

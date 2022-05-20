@@ -1,23 +1,20 @@
 import React from 'react';
-import {useRef} from 'react';
 import { Form, Container, Modal, Row } from 'react-bootstrap';
+import { setStartAddress, setEndAddress} from './Map'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Assets/CSS/MapUI.css';
 
 
 export default function UI() {
-
-    const startRef = useRef(null);
-    const endRef = useRef(null);
  
     function handleSubmit(event) {
         // Set Refs such to display markers
         // - after checking if values are null/empty
         if (event.target[0].value !== null && event.target[0].value !== '')
-            startRef.current = event.target[0].value;
+            setStartAddress(event.target[0].value);
 
         if (event.target[2].value !== null && event.target[2].value !== '')
-            endRef.current = event.target[2].value;
+            setEndAddress(event.target[2].value);
 
         // Stop script from refreshing page
         event.preventDefault(); 
