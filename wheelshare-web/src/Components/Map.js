@@ -16,9 +16,36 @@ const heatmapData =  require('../Assets/Geojsons/4.20.22 gps data.geojson'); // 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{name: "StartMarker"}, {name: "EndMarker"}];
 
-const setAddress        = (index, address)  => {Markers[index].address = address; updateMap()}
-const toggleHeatMap     = ()                => {heatmapOn = !heatmapOn}
-const updateMap         = ()                => {}
+
+const toggleHeatMap = () => {heatmapOn = !heatmapOn}
+
+// Index is intended to be 0 or 1 for start/end locations 
+const setAddress = (index, address)  => {
+    // Call Geocoding here
+    fetch(API + encodeURIComponent(address) + '.json?access_token=' + TOKEN)
+                .then(resp => resp.json())
+                .then(json => {
+                    if (json.features[0] !== undefined)           // Just incase
+                        // Set marker at index to JSON values
+                        Markers[index] = {
+                            name: Markers[index].name,
+                            address: address, 
+                            longitude: json.features[0].center[0], 
+                            latitude: json.features[0].center[1]
+                        }})
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+    updateMap(); 
+
+    // Deletes Double click marker
+    if (Markers.length === 3)
+        Markers.pop();
+}
+
+
+// TODO - rerender Map
+const updateMap = () => {}
 
 
 const DisplayHeatmap = () => {
@@ -31,38 +58,35 @@ const DisplayHeatmap = () => {
         )
 }
 
+// Called by marker name to update new coordinates
+const UpdateCurrentMarker = (name, longitude, latitude) => {
+    const index = Markers.findIndex(m => {return m.name === name});
+
+    Markers[index].longitude = longitude;
+    Markers[index].latitude = latitude;
+}
 
 
-// TODO => Move Update outside of Display to reduce lag
+
+// Displays marker if it contains longitude and latitude coordinates
 const DisplayMarkers = () => {
     return Markers.map(function (marker) {
+        if (!('longitude' in marker && 'latitude' in marker))
+            return null;
 
-        // Update marker positions 
-        if (!('latitude' in marker && 'longitude' in marker)) {
-            if ('address' in marker) {
-                // Forward Geocode - TODO - Async Wait => set marker 
-                // - can be combined with GetLocationByAddress for simplicity
-                //marker = GetLocationByAddress(marker.address, marker.name);
-            } else
-                // Blank marker - nothing to update
-                return null;
-        } 
-
-        // TODO - Marker on drag event => moves to location it is dropped at - Marker does not set
+        // Handle marker onDrag
         const markerOnDragEvent = (ev) => {
-            // Something like this V V 
-            // UpdateMarker(marker.name, ev.lngLat[0], ev.lngLat[1]);
-            marker= {name: marker.name, address: marker.address, longitude: ev.lngLat[0], latitude: ev.lngLat[1]};
+            UpdateCurrentMarker(marker.name, ev.lngLat[0], ev.lngLat[1]);
         }
 
         // Return the marker for display
         return(
             <Marker 
-                className={'name' in marker ? marker.name : "Marker"}
-                longitude={'longitude' in marker? marker.longitude : 0}  // in statements are placeholders unitl Geocoding is done
-                latitude={'latitude' in marker? marker.latitude : 0} 
+                className={ marker.name }
+                longitude= {marker.longitude } 
+                latitude={ marker.latitude } 
                 anchor= 'bottom'
-                key = {marker.name}        // These need to be unique 
+                key = {marker.name}        // TODO - These need to be unique 
                 pitchAlignment= 'map'
                 draggable={true}
                 onDragEnd={ ev => markerOnDragEvent(ev)}>
@@ -71,25 +95,7 @@ const DisplayMarkers = () => {
         }
     );
 
-}
-
-
-
-const GetLocationByAddress = (address, name) => {
-    return fetch(API + encodeURIComponent(address) + '.json?access_token=' + TOKEN)
-                .then(resp => resp.json())
-                .then(json => {
-                    console.log(json);
-                    if (json.features[0] !== undefined)           // Just incase
-                        return {
-                            name: name === undefined? "Marker" : name, 
-                            address: address, 
-                            longitude: json.features[0].center[0], 
-                            latitude: json.features[0].center[1]
-                        }
-                });
-}
-
+}   
 
 
 export default function Map() {
