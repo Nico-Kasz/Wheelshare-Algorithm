@@ -71,6 +71,7 @@ const UpdateCurrentMarker = (name, longitude, latitude) => {
 // Displays marker if it contains longitude and latitude coordinates
 const DisplayMarkers = () => {
     return Markers.map(function (marker) {
+        // Check if marker has coordinates
         if (!('longitude' in marker && 'latitude' in marker))
             return null;
 
@@ -131,6 +132,7 @@ export default function Map() {
                     mapboxApiAccessToken = {TOKEN}
                     mapStyle = "mapbox://styles/nicokasz/ckz23hv99001w14qmii9m7ac4"
                     onViewportChange = {(viewport) => { setViewport(viewport); }}
+                    // Set additional marker - on double click
                     onDblClick = {(ev) => Markers[2] = {name: "Marked Location", longitude: ev.lngLat[0], latitude: ev.lngLat[1]}}
                 >
 
