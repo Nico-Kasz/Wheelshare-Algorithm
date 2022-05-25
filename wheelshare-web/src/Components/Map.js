@@ -147,13 +147,16 @@ export default function Map() {
         mapboxApiAccessToken={TOKEN}
         mapStyle={MapStyle}
         onViewportChange={(viewport) => {
+          viewport.height = '100vh';
+          viewport.width = '100vw';
           setViewport(viewport);
+
         }}
         // Set additional marker - on double click
         onDblClick={(ev) =>
           (Markers[2] = {
             name: "Marked Location",
-		  address: "none",
+		        address: "none",
             longitude: ev.lngLat[0],
             latitude: ev.lngLat[1],
           })

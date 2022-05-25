@@ -1,83 +1,107 @@
 .UI {
-    position: fixed;
-    top: 0;
-    left: 0;
 }
 
+.UI-Title {
+    text-align: center;
+    margin-bottom: 4vh;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/*  Left-oriented UI components  */
 .UI-Left {
     position: fixed;
     top: 0;
     left: 0;
 
     height: 100vh;
+    width: min(40vw, 400px);
+    background-color:aliceblue;
+    padding: 15px;
+
 }
 
-.UI-Upper-Left {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-
-    width: 35%;
-    height: 20vh;
-
-    border-radius: 10%;
-    border-color: black;
-    border-width: 5px;
-}
-
-.UI-Modal-Title {
-    text-align: center;
+.Back-Arrow-Header {
+    text-align: left;
 }
 
 .UI-Search {
     height: 40px;
-    width: 65%;
+    width: 100%;
 
     right: 10%;
     margin-bottom: 5%;
 }
 
 .UI-Submit {
-    width: 30%;
+    width: 100%;
     height: 40px;
     margin-left: 5%;
 
     border-radius: 5px;
 }
 
+.Slider-Text {
+    text-align: left;
+    width: 100%;
+}
+
+.Slider {
+    margin: auto;
+    width: 90%;
+}
+
+.Account-Button {
+    margin: 2% auto 0 auto;
+    width: 30%;
+}
+
+.Footer-Info {
+    text-align: center;
+}
+
+
+
+/* Heatmap UI components */
 .UI-Heatmap {
     position: fixed;
     top: 10px;
     right: 10px;
 
-    width: 35%;
-    height: 20vh;
+    padding: 10px;
 
     border-radius: 10%;
     border-color: black;
-    border-width: 5px;
+    border-style: solid;
+    border-width: 2px;
+    
+    background-color:aliceblue;
+}
+
+.Heatmap-Revert-Button {
+    
 }
 
 .Heatmap-Col {
-    margin: auto;
+   
 }
 
 .Heatmap-Button {
-    padding: 10px 10px 0 10px;
-    height: 120px;
-    width: 120px;
-
+    padding: 1vw 1vw 0 1vw;
+    border-radius: 10px;
 }
 
 .Heatmap-Button-Icon {
-    width: 60px;
-    height: 60px;
+    width: 2vw;
+    height: 2vw;
 }
 
 .HeatMap-Button-Text {
     text-align: center;
     padding-top: 5px;
 
-    font-size: 20px;
+    font-size: 10px;
     font-weight: bold;
 }
