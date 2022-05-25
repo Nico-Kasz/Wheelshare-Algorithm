@@ -1,15 +1,19 @@
 import * as React from "react";
 import { useState } from "react";
-import ReactMapGL, { GeolocateControl, NavigationControl, Marker, Source, Layer } from "react-map-gl";
+import ReactMapGL, {
+  GeolocateControl,
+  NavigationControl,
+  Marker,
+  Source,
+  Layer,
+} from "react-map-gl";
 import { heatmapLayer } from "./heatmap";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
 
 // Constants Imports
 import { API, TOKEN, MapStyle } from "./constants";
-
-
-
+import { textChangeRangeIsUnchanged } from "typescript";
 
 // ================================= Variables =================================
 let heatmapData = null;
@@ -17,18 +21,12 @@ let heatmapData = null;
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
 
-
-
-
-
 // ================================= Modifying Methods =================================
-// TODO - On UI button click => retrieve new heatmap data
 const changeHeatmap = (src) => {
   // src should be an api endpoint
-	heatmapData = src;
-	updateMap(); 
-}
-
+  heatmapData = src;
+  updateMap();
+};
 
 // Index is intended to be 0 or 1 for start/end locations
 const setAddress = (index, address) => {
@@ -54,46 +52,38 @@ const setAddress = (index, address) => {
   updateMap();
 
   // Deletes Double click marker
-  if (Markers.length === 3) 
-  	Markers.pop();
+  if (Markers.length === 3) Markers.pop();
 };
 
-
-// TODO - rerender Map
+// TODO - rerender Map - Maybe do useEffect in Map
 const updateMap = () => {};
-
 
 // Called by marker name to update new coordinates
 const UpdateCurrentMarker = (name, longitude, latitude) => {
-	const index = Markers.findIndex((m) => {
-	  return m.name === name;
-	});
-   
-	Markers[index].longitude = longitude;
-	Markers[index].latitude = latitude;
-   };
-   
+  const index = Markers.findIndex((m) => {
+    return m.name === name;
+  });
 
-
+  Markers[index].longitude = longitude;
+  Markers[index].latitude = latitude;
+};
 
 // ================================= Components =================================
 const DisplayHeatmap = () => {
-    return (
-      heatmapData && (
-        <Source type="geojson" data={heatmapData}>
-          <Layer {...heatmapLayer} />
-        </Source>
-      )
-    );
+  return (
+    heatmapData && (
+      <Source type="geojson" data={heatmapData}>
+        <Layer {...heatmapLayer} />
+      </Source>
+    )
+  );
 };
-
 
 // Displays marker if it contains longitude and latitude coordinates
 const DisplayMarkers = () => {
   return Markers.map(function (marker) {
     // Check if marker has coordinates
     if (!("longitude" in marker && "latitude" in marker)) return null;
-
 
     // Return the marker for display
     return (
@@ -105,15 +95,15 @@ const DisplayMarkers = () => {
         key={marker.name}
         pitchAlignment="map"
         draggable={true}
-        onDragEnd={(ev) => UpdateCurrentMarker(marker.name, ev.lngLat[0], ev.lngLat[1])}
+        onDragEnd={(ev) =>
+          UpdateCurrentMarker(marker.name, ev.lngLat[0], ev.lngLat[1])
+        }
       >
         <Pin />
       </Marker>
     );
   });
 };
-
-
 
 export default function Map() {
   const [viewport, setViewport] = useState({
@@ -135,9 +125,10 @@ export default function Map() {
     touchZoom: false,
     touchRotate: false,
     keyboard: true,
-    doubleClickZoom: false
-  }
+    doubleClickZoom: false,
+  };
 
+  // TODO - Add use effect to update?
 
   return (
     <div>
@@ -147,16 +138,15 @@ export default function Map() {
         mapboxApiAccessToken={TOKEN}
         mapStyle={MapStyle}
         onViewportChange={(viewport) => {
-          viewport.height = '100vh';
-          viewport.width = '100vw';
+          viewport.height = window.innerHeight;
+          viewport.width = window.innerWidth;
           setViewport(viewport);
-
         }}
         // Set additional marker - on double click
         onDblClick={(ev) =>
           (Markers[2] = {
             name: "Marked Location",
-		        address: "none",
+            address: "none",
             longitude: ev.lngLat[0],
             latitude: ev.lngLat[1],
           })
@@ -172,14 +162,10 @@ export default function Map() {
           maxZoom={22}
         />
 
-        <NavigationControl 
-		className="NavControl" 
-		showCompass={false} 
-	   />
-
+        <NavigationControl className="NavControl" showCompass={false} />
       </ReactMapGL>
     </div>
   );
 }
 
-export { setAddress, changeHeatmap};
+export { setAddress, changeHeatmap };
