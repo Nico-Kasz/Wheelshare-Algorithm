@@ -13,7 +13,6 @@ import "../Assets/CSS/Map.css";
 
 // Constants Imports
 import { API, TOKEN, MapStyle } from "./constants";
-import { textChangeRangeIsUnchanged } from "typescript";
 
 // ================================= Variables =================================
 let heatmapData = null;
@@ -112,7 +111,7 @@ export default function Map() {
     hash: true,
     latitude: 39.50882818527073,
     longitude: -84.73455522976074,
-    zoom: 14,
+    zoom: 17,
     maxZoom: 20,
     minPitch: 0,
     maxPitch: 30,
