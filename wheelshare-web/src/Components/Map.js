@@ -10,22 +10,21 @@ import ReactMapGL, {
 import { heatmapLayer } from "./heatmap";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
-
-// Constants Imports
 import { API, TOKEN, MapStyle } from "./constants";
-
-// ================================= Variables =================================
-let heatmapData = null;
 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
+let heatmapData = null;
 
-// ================================= Modifying Methods =================================
+
+
+
 const changeHeatmap = (src) => {
   // src should be an api endpoint
   heatmapData = src;
   updateMap();
 };
+
 
 // Index is intended to be 0 or 1 for start/end locations
 const setAddress = (index, address) => {
@@ -54,8 +53,11 @@ const setAddress = (index, address) => {
   if (Markers.length === 3) Markers.pop();
 };
 
+
 // TODO - rerender Map - Maybe do useEffect in Map
 const updateMap = () => {};
+
+
 
 // Called by marker name to update new coordinates
 const UpdateCurrentMarker = (name, longitude, latitude) => {
@@ -67,7 +69,8 @@ const UpdateCurrentMarker = (name, longitude, latitude) => {
   Markers[index].latitude = latitude;
 };
 
-// ================================= Components =================================
+
+
 const DisplayHeatmap = () => {
   return (
     heatmapData && (
@@ -77,6 +80,8 @@ const DisplayHeatmap = () => {
     )
   );
 };
+
+
 
 // Displays marker if it contains longitude and latitude coordinates
 const DisplayMarkers = () => {
@@ -103,6 +108,10 @@ const DisplayMarkers = () => {
     );
   });
 };
+
+const DisplayRoute = () => {
+
+}
 
 export default function Map() {
   const [viewport, setViewport] = useState({
@@ -154,6 +163,8 @@ export default function Map() {
         {DisplayHeatmap()}
 
         {DisplayMarkers()}
+
+        {DisplayRoute()}
 
         <GeolocateControl
           className="GeoLocate"
