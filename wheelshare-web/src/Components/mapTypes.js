@@ -22,7 +22,7 @@ const MapTypes = () => {
   return (
     <div id="UI-Heatmap">
       <input type="checkbox" className="Heatmap-Toggle" id="Heatmap-Toggle" />
-      <label for="Heatmap-Toggle" className="Heatmap-Toggle-Icon">
+      <label htmlFor="Heatmap-Toggle" className="Heatmap-Toggle-Icon">
         <img
           src={require("../Assets/Images/web-icon.png")}
           alt="Map Toggle Icon"

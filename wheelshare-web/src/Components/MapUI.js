@@ -1,17 +1,13 @@
 import React from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { setAddress} from "./Map";
+import { setAddress } from "./Map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Assets/CSS/MapUI.css";
 
 
 function handleSubmit(event) {
-  // Sends values to Map
-  // - after checking if values are null/empty
-  if (event.target[0].value !== null && event.target[0].value !== "")
+    // Sanitation happens before fetching
     setAddress(0, event.target[0].value);
-
-  if (event.target[2].value !== null && event.target[2].value !== "")
     setAddress(1, event.target[2].value);
 
   // Stop script from refreshing page
@@ -32,13 +28,13 @@ function swapSearchTerms() {
 export default function UI() {
   // TODO - Create multiple Menus and ability to switch between them
   return (
-    <div className="UI">
-      <div className="UI-Left">
-        <div className="UI-Title">
+    <div id="UI">
+      <div id="UI-Left">
+        <div id="UI-Title">
           <Button className="Back-Arrow-Header"> &lt; </Button>
           MyPath
         </div>
-        <div className="UI-Content">
+        <div id="UI-Content">
           <Container>
             <Form onSubmit={handleSubmit}>
               <Row>

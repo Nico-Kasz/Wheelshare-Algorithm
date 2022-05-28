@@ -8,6 +8,7 @@ import ReactMapGL, {
   Layer,
 } from "react-map-gl";
 import { heatmapLayer } from "./heatmap";
+import { routeLine } from "./routeLine";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
 import { API, TOKEN, MapStyle } from "./constants";
@@ -28,6 +29,13 @@ const changeHeatmap = (src) => {
 
 // Index is intended to be 0 or 1 for start/end locations
 const setAddress = (index, address) => {
+  // Check input
+  if (address === "" || address === null) {
+    Markers[index] = {
+      name: Markers[index].name
+    }
+  }
+
   // Call Geocoding here
   fetch(API + encodeURIComponent(address) + ".json?access_token=" + TOKEN)
     .then((resp) => resp.json())
@@ -109,8 +117,25 @@ const DisplayMarkers = () => {
   });
 };
 
-const DisplayRoute = () => {
 
+
+
+// Test data do display a line
+const lineData = require("../Assets/Geojsons/route test data 1.geojson");
+
+const DisplayRoute = () => {
+  // For testing purposes, doesn't display if only one Marker is used - cuases second location to be at 0,0
+  if (!('latitude' in Markers[0] && 'latitude' in Markers[1])) {
+    return null;
+  }
+
+  return (
+    lineData && (
+      <Source type="geojson" data={lineData}>
+        <Layer {...routeLine} />
+      </Source>
+    )
+  );
 }
 
 export default function Map() {

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Map from './Map.js';
+import Map  from './Map.js';
 import UI from './MapUI.js';
 import MapTypes from './mapTypes';
+
 
 
 export default function App() {
