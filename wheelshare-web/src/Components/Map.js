@@ -16,7 +16,7 @@ import { API, TOKEN, MapStyle } from "./constants";
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
 let heatmapData = null;
-
+let lineData = null;
 
 
 
@@ -121,7 +121,7 @@ const DisplayMarkers = () => {
 
 
 // Test data do display a line
-const lineData = require("../Assets/Geojsons/route test data 1.geojson");
+lineData = require("../Assets/Geojsons/route test data 1.geojson");
 
 const DisplayRoute = () => {
   // For testing purposes, doesn't display if only one Marker is used - cuases second location to be at 0,0
