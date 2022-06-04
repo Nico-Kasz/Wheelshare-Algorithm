@@ -4,7 +4,7 @@ import Map from '../Components/App';
 
 test('renders marker at Armstrong', () => {
   render(<Map />);
-  // const markerTest = screen.getByRole('Marker');
-  // expect(markerTest).toHaveAttribute("longitude", 84.73332)
-  // expect(markerTest).toHaveAttribute("latitude", 39.507726)
+  const markerTest = screen.getByRole('Marker');
+  expect(markerTest).toHaveAttribute("longitude", 84.73332)
+  expect(markerTest).toHaveAttribute("latitude", 39.507726)
 });
