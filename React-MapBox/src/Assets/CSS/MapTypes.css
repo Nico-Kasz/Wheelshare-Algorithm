@@ -1,4 +1,4 @@
-#UI-Heatmap {
+#UI-Overlay {
     display: block;
     margin: 0 auto;
     box-shadow: none;
@@ -10,7 +10,7 @@
     z-index: 10;
 }
 
-.Heatmap-Toggle-Icon, #Heatmap-Toggle {
+.Overlay-Toggle-Icon, #Overlay-Toggle {
     position: fixed;
     top: 5vh;
     right: 5vh;
@@ -19,7 +19,7 @@
 }
 
 
-.Heatmap-Toggle-Icon {
+.Overlay-Toggle-Icon {
     margin: -5vh;
     box-sizing: border-box;
     cursor: pointer;
@@ -28,7 +28,7 @@
 }
 
 
-#Heatmap-Content { 
+#Overlay-Content { 
     float: left;
     overflow-x: none;
     opacity: 0;
@@ -38,23 +38,23 @@
 }
 
 
-input[type="checkbox"]:checked ~ #Heatmap-Content {
+input[type="checkbox"]:checked ~ #Overlay-Content {
     float: right;
     transform: translateX(-50%);
     opacity: 1;
 }
 
-.Heatmap-Button {
+.Overlay-Button {
     background: none;
     border: none;
 }
 
-.Heatmap-Button-Icon {
+.Overlay-Button-Icon {
     width: 10vh;
     height: 10vh;
 }
 
-.HeatMap-Button-Text {
+.Overlay-Button-Text {
     color:black;
     font-weight: 700;
 }

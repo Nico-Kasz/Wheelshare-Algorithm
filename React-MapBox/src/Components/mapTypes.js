@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
-import { changeHeatmap } from "./Map";
+import { changeOverlay } from "./Map";
 import "../Assets/CSS/MapTypes.css"
 
 const mapLayers = [
@@ -11,18 +11,18 @@ const mapLayers = [
     src: null,
   },
   {
-    name: "heatmap",
+    name: "sidewalk data",
     key: "option 1",
-    imgSrc:require("../Assets/Images/web-icon.png"),
-    src: require("../Assets/Geojsons/4.20.22 gps data.geojson"),
+    imgSrc: require("../Assets/Images/web-icon.png"),
+    src: require("../Assets/Geojsons/sidewalk.geojson")
   }
 ];
 
 const MapTypes = () => {
   return (
-    <div id="UI-Heatmap">
-      <input type="checkbox" className="Heatmap-Toggle" id="Heatmap-Toggle" />
-      <label htmlFor="Heatmap-Toggle" className="Heatmap-Toggle-Icon">
+    <div id="UI-Overlay">
+      <input type="checkbox" className="Overlay-Toggle" id="Overlay-Toggle" />
+      <label htmlFor="Overlay-Toggle" className="Overlay-Toggle-Icon">
         <img
           src={require("../Assets/Images/web-icon.png")}
           alt="Map Toggle Icon"
@@ -31,24 +31,24 @@ const MapTypes = () => {
         />
       </label>
 
-      <div id="Heatmap-Content">
+      <div id="Overlay-Content">
         <Row>
           {mapLayers.map(function (map) {
             return (
               <Col sm={"auto"} key={map.key}>
                 <Button
                   onClick={() => {
-                    changeHeatmap(map.src);
-                    document.getElementById("Heatmap-Toggle").checked = false;
+                    changeOverlay(map.src);
+                    document.getElementById("Overlay-Toggle").checked = false;
                   }}
-                  className="Heatmap-Button"
+                  className="Overlay-Button"
                 >
                   <img
                     src={map.imgSrc}
                     alt={map.name}
-                    className="Heatmap-Button-Icon"
+                    className="Overlay-Button-Icon"
                   />
-                  <p className="HeatMap-Button-Text">{map.name}</p>
+                  <p className="Overlay-Button-Text">{map.name}</p>
                 </Button>
               </Col>
             );
