@@ -7,12 +7,11 @@ import ReactMapGL, {
   Source,
   Layer,
 } from "react-map-gl";
-import { heatmapLayer } from "./heatmap";
+//import { heatmapLayer } from "./heatmap";
 import { routeLine } from "./routeLine";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
 import { API, TOKEN, MapStyle } from "./constants";
-import { isStringLiteral } from "typescript";
 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
@@ -23,16 +22,6 @@ const changeOverlay = (src) => {
   // src should be an api endpoint
   overlayData = src;
   updateMap();
-
-  var obj = { name: "MyNode", width: 200, height: 100, incline: "down" };
-
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k) && 'incline' in obj) {
-      let parse = parseInt(obj[k]);
-      obj[k] = parse >= 0 ? parse : -1;
-    }
-  }
-  console.log(obj);
 };
 
 // Index is intended to be 0 or 1 for start/end locations
@@ -57,6 +46,10 @@ const setAddress = (index, address) => {
           longitude: json.features[0].center[0],
           latitude: json.features[0].center[1],
         };
+        if ('longitude' in Markers[0] && 'longitude' in Markers[1])
+          // This is where we call API for route data
+          // Test data do display a line
+          lineData = require("../Assets/Geojsons/route test data 1.geojson");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -118,8 +111,7 @@ const DisplayMarkers = () => {
   });
 };
 
-// Test data do display a line
-lineData = require("../Assets/Geojsons/route test data 1.geojson");
+
 
 const DisplayRoute = () => {
   // For testing purposes, doesn't display if only one Marker is used - cuases second location to be at 0,0
@@ -185,7 +177,7 @@ export default function Map() {
       >
         {DisplayOverlay()}
         {DisplayMarkers()}
-        {/*DisplayRoute()*/}
+        {DisplayRoute()}
 
         <GeolocateControl
           className="GeoLocate"
