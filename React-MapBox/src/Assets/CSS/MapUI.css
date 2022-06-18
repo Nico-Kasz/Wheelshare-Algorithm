@@ -16,15 +16,41 @@
     top: 0;
     left: 0;
 
-    height: 100vh;
+    height: 100%;
     width: min(40vw, 400px);
     background-color:aliceblue;
     padding: 15px;
 
+    transform: translateX(0);
+    transition: all 2s ease-in-out;
+}
+
+#UI-Toggle:checked ~ #UI-Left{
+    position: relative;
+    transform: translateX(-50%);
+}
+
+.UI-Toggle {
+   display: none;
+   
 }
 
 .Back-Arrow-Header {
     text-align: left;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: min(40vw, 400px);
+
+    transform: translateX(0px);
+    transition: all 1.5s ease-in-out;
+}
+
+.Back-Arrow-Header:active {
+    height: 100%;
+    transform: translateX(-1000%);
+
 }
 
 .UI-Search {

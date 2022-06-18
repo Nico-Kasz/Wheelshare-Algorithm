@@ -7,7 +7,7 @@ import ReactMapGL, {
   Source,
   Layer,
 } from "react-map-gl";
-import { heatmapLayer } from "./heatmap";
+//import { heatmapLayer } from "./heatmap";
 import { routeLine } from "./routeLine";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
@@ -15,25 +15,22 @@ import { API, TOKEN, MapStyle } from "./constants";
 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
-let heatmapData = null;
+let overlayData = null;
 let lineData = null;
 
-
-
-const changeHeatmap = (src) => {
+const changeOverlay = (src) => {
   // src should be an api endpoint
-  heatmapData = src;
+  overlayData = src;
   updateMap();
 };
-
 
 // Index is intended to be 0 or 1 for start/end locations
 const setAddress = (index, address) => {
   // Check input
   if (address === "" || address === null) {
     Markers[index] = {
-      name: Markers[index].name
-    }
+      name: Markers[index].name,
+    };
   }
 
   // Call Geocoding here
@@ -49,6 +46,10 @@ const setAddress = (index, address) => {
           longitude: json.features[0].center[0],
           latitude: json.features[0].center[1],
         };
+        if ('longitude' in Markers[0] && 'longitude' in Markers[1])
+          // This is where we call API for route data
+          // Test data do display a line
+          lineData = require("../Assets/Geojsons/route test data 1.geojson");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -61,11 +62,8 @@ const setAddress = (index, address) => {
   if (Markers.length === 3) Markers.pop();
 };
 
-
 // TODO - rerender Map - Maybe do useEffect in Map
 const updateMap = () => {};
-
-
 
 // Called by marker name to update new coordinates
 const UpdateCurrentMarker = (name, longitude, latitude) => {
@@ -77,19 +75,15 @@ const UpdateCurrentMarker = (name, longitude, latitude) => {
   Markers[index].latitude = latitude;
 };
 
-
-
-const DisplayHeatmap = () => {
+const DisplayOverlay = () => {
   return (
-    heatmapData && (
-      <Source type="geojson" data={heatmapData}>
-        <Layer {...heatmapLayer} />
+    overlayData && (
+      <Source type="geojson" data={overlayData}>
+        <Layer {...routeLine} />
       </Source>
     )
   );
 };
-
-
 
 // Displays marker if it contains longitude and latitude coordinates
 const DisplayMarkers = () => {
@@ -119,13 +113,9 @@ const DisplayMarkers = () => {
 
 
 
-
-// Test data do display a line
-lineData = require("../Assets/Geojsons/route test data 1.geojson");
-
 const DisplayRoute = () => {
   // For testing purposes, doesn't display if only one Marker is used - cuases second location to be at 0,0
-  if (!('latitude' in Markers[0] && 'latitude' in Markers[1])) {
+  if (!("latitude" in Markers[0] && "latitude" in Markers[1])) {
     return null;
   }
 
@@ -136,12 +126,12 @@ const DisplayRoute = () => {
       </Source>
     )
   );
-}
+};
 
 export default function Map() {
   const [viewport, setViewport] = useState({
-    width: '100vw',
-    height: '100vh',
+    width: "100vw",
+    height: "100vh",
     hash: true,
     latitude: 39.50882818527073,
     longitude: -84.73455522976074,
@@ -185,10 +175,8 @@ export default function Map() {
           })
         }
       >
-        {DisplayHeatmap()}
-
+        {DisplayOverlay()}
         {DisplayMarkers()}
-
         {DisplayRoute()}
 
         <GeolocateControl
@@ -196,11 +184,10 @@ export default function Map() {
           trackUserLocation={true}
           maxZoom={22}
         />
-
         <NavigationControl className="NavControl" showCompass={false} />
       </ReactMapGL>
     </div>
   );
 }
 
-export { setAddress, changeHeatmap };
+export { setAddress, changeOverlay };

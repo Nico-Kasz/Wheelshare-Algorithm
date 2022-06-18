@@ -4,11 +4,10 @@ import { setAddress } from "./Map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Assets/CSS/MapUI.css";
 
-
 function handleSubmit(event) {
-    // Sanitation happens before fetching
-    setAddress(0, event.target[0].value);
-    setAddress(1, event.target[2].value);
+  // Sanitation happens before fetching
+  setAddress(0, event.target[0].value);
+  setAddress(1, event.target[2].value);
 
   // Stop script from refreshing page
   event.preventDefault();
@@ -24,16 +23,12 @@ function swapSearchTerms() {
   toRef.value = temp;
 }
 
-
 export default function UI() {
   // TODO - Create multiple Menus and ability to switch between them
   return (
     <div id="UI">
       <div id="UI-Left">
-        <div id="UI-Title">
-          <Button className="Back-Arrow-Header"> &lt; </Button>
-          MyPath
-        </div>
+        <div id="UI-Title">MyPath</div>
         <div id="UI-Content">
           <Container>
             <Form onSubmit={handleSubmit}>
@@ -100,7 +95,11 @@ export default function UI() {
           <div className="Footer-Info">
             <Row>
               <Col xs={4}>
-                <a href="http://routemypath.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="http://routemypath.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   About
                 </a>
               </Col>
@@ -111,6 +110,18 @@ export default function UI() {
             </Row>
           </div>
         </div>
+        <input type="checkbox" id="UI-Toggle" className="UI-Toggle" />
+        <label htmlFor="UI-Toggle">
+          <Button
+            className="Back-Arrow-Header"
+            onClick={() => {
+              let a = document.getElementById("UI-Toggle");
+              a.checked = !a.checked;
+            }}
+          >
+            &lt;
+          </Button>
+        </label>
       </div>
     </div>
   );
