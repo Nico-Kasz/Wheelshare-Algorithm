@@ -43,4 +43,4 @@ export const routeLine = {
     ],
     "line-width": ["interpolate", ["linear"], ["zoom"], ...ZOOM_INTERP],
   },
-};
+}; 
