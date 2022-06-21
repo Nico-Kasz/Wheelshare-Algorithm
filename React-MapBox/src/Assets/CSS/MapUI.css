@@ -20,19 +20,15 @@
     width: min(40vw, 400px);
     background-color:aliceblue;
     padding: 15px;
+}
 
+.UI-Left {
     transform: translateX(0);
-    transition: all 2s ease-in-out;
+    transition: all 1.5s ease;
 }
 
-#UI-Toggle:checked ~ #UI-Left{
-    position: relative;
-    transform: translateX(-50%);
-}
-
-.UI-Toggle {
-   display: none;
-   
+.UI-Left-Hidden {
+    transform: translateX(-100%);
 }
 
 .Back-Arrow-Header {
@@ -43,14 +39,30 @@
     top: 0;
     left: min(40vw, 400px);
 
-    transform: translateX(0px);
-    transition: all 1.5s ease-in-out;
+    border-radius: 0px;
 }
 
-.Back-Arrow-Header:active {
-    height: 100%;
-    transform: translateX(-1000%);
+.Back-Arrow-Text {
+    font-weight: bolder;
+    font-size: min(25px, 4vh);
 
+    transform: rotateZ(0deg);
+    transition: all 1s ease;
+}
+.Back-Arrow-Text-Flipped {
+    transform: rotateZ(180deg);
+}
+
+
+
+
+
+
+#Search-Area {
+    position: absolute;
+    width: 85%;
+
+    top: 18%;
 }
 
 .UI-Search {
@@ -59,6 +71,8 @@
 
     right: 10%;
     margin-bottom: 5%;
+
+    border-radius: 15px / 15px;
 }
 
 .UI-Submit {
@@ -69,9 +83,20 @@
     border-radius: 5px;
 }
 
+
+
+
+#Slider {
+    position: absolute;
+    width: 90%;
+
+    top: 30%;
+}
+
 .Slider-Text {
     text-align: left;
     width: 100%;
+    margin-top: 15%;
 }
 
 .Slider {
@@ -79,11 +104,25 @@
     width: 90%;
 }
 
+
+#Profile {
+    position: absolute;
+    width: 90%;
+
+    top: 50%;
+}
 .Account-Button {
     margin: 2% auto 0 auto;
     width: 30%;
 }
 
-.Footer-Info {
+
+
+#Footer-Info {
+    position: absolute;
+    width: 90%;
+
+    bottom:3.5%;
+
     text-align: center;
 }

@@ -27,54 +27,57 @@ export default function UI() {
   // TODO - Create multiple Menus and ability to switch between them
   return (
     <div id="UI">
-      <div id="UI-Left">
+      <div id="UI-Left" className="UI-Left">
         <div id="UI-Title">MyPath</div>
         <div id="UI-Content">
           <Container>
             <Form onSubmit={handleSubmit}>
-              <Row>
-                <Col md={8}>
-                  <input
-                    type="text"
-                    className="form-control UI-Search"
-                    id="fromLocation"
-                    placeholder="Starting point"
-                  />
-                </Col>
-                <Col md={4}>
-                  <Button
-                    className="UI-Submit"
-                    onClick={() => {
-                      swapSearchTerms();
-                    }}
-                  >
-                    Swap
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={8}>
-                  <input
-                    type="text"
-                    className="form-control UI-Search"
-                    id="toLocation"
-                    placeholder="Ending point"
-                  />
-                </Col>
-                <Col md={4}>
-                  <input
-                    type="submit"
-                    className="btn-primary UI-Submit"
-                    value="Search"
-                  />
-                </Col>
-              </Row>
+              <div id="Search-Area">
+                <Row>
+                  <Col md={8}>
+                    <input
+                      type="text"
+                      className="form-control UI-Search"
+                      id="fromLocation"
+                      placeholder="Starting point"
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <Button
+                      className="UI-Submit"
+                      onClick={() => {
+                        swapSearchTerms();
+                      }}
+                    >
+                      Swap
+                    </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={8}>
+                    <input
+                      type="text"
+                      className="form-control UI-Search"
+                      id="toLocation"
+                      placeholder="Ending point"
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <input
+                      type="submit"
+                      className="btn-primary UI-Submit"
+                      value="Search"
+                    />
+                  </Col>
+                </Row>
+              </div>
             </Form>
           </Container>
+          <div id="Slider" >
           <div className="Slider-Text">Slope Tolerance:</div>
           <Row>
             <input
-              id="typeinp"
+              id="InclineSlider"
               className="Slider"
               type="range"
               min="0"
@@ -86,13 +89,16 @@ export default function UI() {
               }}
             />
           </Row>
+          </div>
+          <div id="Profile">
           <Row>
             <Button className="Account-Button">Log In</Button>
           </Row>
           <Row>
             <Button className="Account-Button">Sign Up</Button>
           </Row>
-          <div className="Footer-Info">
+          </div>
+          <div id="Footer-Info">
             <Row>
               <Col xs={4}>
                 <a
@@ -105,23 +111,29 @@ export default function UI() {
               </Col>
               <Col xs={4}>Feedback</Col>
               <Col xs={4}>
-                <a href="mailto:someone@yoursite.com">Contact Us</a>
+                <a href="mailto:raychov@MiamiOH.edu">Contact Us</a>
               </Col>
             </Row>
           </div>
         </div>
-        <input type="checkbox" id="UI-Toggle" className="UI-Toggle" />
-        <label htmlFor="UI-Toggle">
-          <Button
-            className="Back-Arrow-Header"
-            onClick={() => {
-              let a = document.getElementById("UI-Toggle");
-              a.checked = !a.checked;
-            }}
-          >
+        <Button
+          className="Back-Arrow-Header"
+          onClick={() => {
+            let UI = document.getElementById("UI-Left");
+            let text = document.getElementById("Back-Arrow-Text");
+            if (UI.classList.contains("UI-Left-Hidden")) {
+              UI.classList.remove("UI-Left-Hidden");
+              text.classList.remove("Back-Arrow-Text-Flipped");
+            } else {
+              UI.classList.add("UI-Left-Hidden");
+              text.classList.add("Back-Arrow-Text-Flipped");
+            }
+          }}
+        >
+          <p className="Back-Arrow-Text" id="Back-Arrow-Text">
             &lt;
-          </Button>
-        </label>
+          </p>
+        </Button>
       </div>
     </div>
   );
