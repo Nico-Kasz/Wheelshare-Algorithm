@@ -3,6 +3,8 @@ package com.backend.Server.service;
 import com.backend.Server.dao.GraphDao;
 import com.backend.Server.model.Direction;
 import com.backend.Server.model.Poi;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,7 +15,8 @@ public class DirectionService {
     // instance variable
     private final GraphDao graphDao;
     // constructor
-    public DirectionService(GraphDao graphDao) {
+    @Autowired
+    public DirectionService(@Qualifier("GraphData") GraphDao graphDao) {
         this.graphDao = graphDao;
     }
     // method
@@ -25,8 +28,9 @@ public class DirectionService {
         int end = metaData[2];
         // adjacency matrix
         List<List<Integer>> adj = graphDao.constructGraph(dir);
+        List<List<Integer>> weight = graphDao.constructWeight(dir);
         // initialize the graph algorithm to run
-        Graph graphAlgo = new Graph(V, start, end, adj);
+        Graph graphAlgo = new Graph(V, start, end, adj, weight);
         List<Integer> result = graphAlgo.routeAlgo();
         // convert back to usable data
         return graphDao.match(result);

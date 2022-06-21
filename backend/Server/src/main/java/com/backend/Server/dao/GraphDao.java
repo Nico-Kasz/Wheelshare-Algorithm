@@ -9,6 +9,9 @@ public interface GraphDao {
     // return the adjacency matrix of the graph
     List<List<Integer>> constructGraph(Direction direction);
 
+    // return the weight of the graph
+    List<List<Integer>> constructWeight(Direction direction);
+
     // return an array of 3 elements:
     // number of vertices, source and destination of the graph
     int[] metaGraph();
