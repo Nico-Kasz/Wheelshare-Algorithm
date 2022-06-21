@@ -7,11 +7,18 @@ import ReactMapGL, {
   Source,
   Layer,
 } from "react-map-gl";
+import mapboxgl from 'mapbox-gl';
 //import { heatmapLayer } from "./heatmap";
 import { routeLine } from "./routeLine";
 import Pin from "./Pin";
 import "../Assets/CSS/Map.css";
 import { API, TOKEN, MapStyle } from "./constants";
+
+// The following is required to stop "npm build" from transpiling mapbox code.
+    // notice the exclamation point in the import.
+    // @ts-ignore
+    // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+    mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
