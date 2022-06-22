@@ -164,6 +164,9 @@ export default function UI() {
               Panel.classList.add("Feedback-Hidden");
             }}
           >
+            <p className="Feedback-Title">
+              Feedback
+            </p>
             <textarea className="form-control Feedback-Text" rows={6} />
             <Row>
               <Col xs={6}>
