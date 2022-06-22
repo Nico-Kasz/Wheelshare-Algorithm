@@ -1,6 +1,3 @@
-#UI {
-}
-
 #UI-Title {
     text-align: center;
     margin-bottom: 4vh;
@@ -35,7 +32,7 @@
 #UI-Content {
     /* position: relative; */
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .Back-Arrow-Header {
     text-align: left;
@@ -62,7 +59,7 @@
 #Search-Area {
     position: absolute;
     width: 85%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     top: 18%;
     float: left;
 }
