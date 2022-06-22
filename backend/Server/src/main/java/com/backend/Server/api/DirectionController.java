@@ -30,6 +30,6 @@ public class DirectionController {
     // This is for testing
     @GetMapping
     public String getDirection() {
-        return "This is for testing";
+        return "This is for testing in direction api";
     }
 }
