@@ -74,29 +74,29 @@ export default function UI() {
             </Form>
           </Container>
           <div id="Slider" >
-          <div className="Slider-Text">Slope Tolerance:</div>
-          <Row>
-            <input
-              id="InclineSlider"
-              className="Slider"
-              type="range"
-              min="0"
-              max="15"
-              defaultValue="3"
-              step=".2"
-              onChange={(event) => {
-                console.log(event.target.value);
-              }}
-            />
-          </Row>
+            <div className="Slider-Text">Slope Tolerance:</div>
+            <Row>
+              <input
+                id="InclineSlider"
+                className="Slider"
+                type="range"
+                min="0"
+                max="15"
+                defaultValue="3"
+                step=".2"
+                onChange={(event) => {
+                  console.log(event.target.value);
+                }}
+              />
+            </Row>
           </div>
           <div id="Profile">
-          <Row>
-            <Button className="Account-Button">Log In</Button>
-          </Row>
-          <Row>
-            <Button className="Account-Button">Sign Up</Button>
-          </Row>
+            <Row>
+              <Button className="Account-Button">Log In</Button>
+            </Row>
+            <Row>
+              <Button className="Account-Button">Sign Up</Button>
+            </Row>
           </div>
           <div id="Footer-Info">
             <Row>
