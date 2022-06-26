@@ -7,7 +7,7 @@ import ReactMapGL, {
   Source,
   Layer,
 } from "react-map-gl";
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from "mapbox-gl";
 //import { heatmapLayer } from "./heatmap";
 import { routeLine } from "./routeLine";
 import Pin from "./Pin";
@@ -15,10 +15,10 @@ import "../Assets/CSS/Map.css";
 import { API, TOKEN, MapStyle } from "./constants";
 
 // The following is required to stop "npm build" from transpiling mapbox code.
-    // notice the exclamation point in the import.
-    // @ts-ignore
-    // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-    mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 // {name: _, address: _, longitude: _, latitude: _}
 const Markers = [{ name: "StartMarker" }, { name: "EndMarker" }];
@@ -53,10 +53,6 @@ const setAddress = (index, address) => {
           longitude: json.features[0].center[0],
           latitude: json.features[0].center[1],
         };
-        if ('longitude' in Markers[0] && 'longitude' in Markers[1])
-          // This is where we call API for route data
-          // Test data do display a line
-          lineData = require("../Assets/Geojsons/route test data 1.geojson");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -70,8 +66,7 @@ const setAddress = (index, address) => {
 };
 
 // TODO - rerender Map - Maybe do useEffect in Map
-const updateMap = () => {};
-
+const updateMap = () => {}
 // Called by marker name to update new coordinates
 const UpdateCurrentMarker = (name, longitude, latitude) => {
   const index = Markers.findIndex((m) => {
@@ -108,8 +103,10 @@ const DisplayMarkers = () => {
         key={marker.name}
         pitchAlignment="map"
         draggable={true}
-        onDragEnd={(ev) =>
-          UpdateCurrentMarker(marker.name, ev.lngLat[0], ev.lngLat[1])
+        onDragEnd={(ev) => {
+          UpdateCurrentMarker(marker.name, ev.lngLat[0], ev.lngLat[1]);
+          updateMap();
+        }
         }
       >
         <Pin />
@@ -118,15 +115,9 @@ const DisplayMarkers = () => {
   });
 };
 
-
-
 const DisplayRoute = () => {
   // For testing purposes, doesn't display if only one Marker is used - cuases second location to be at 0,0
-  if (!("latitude" in Markers[0] && "latitude" in Markers[1])) {
-    return null;
-  }
-
-  return (
+  return true ? null : (
     lineData && (
       <Source type="geojson" data={lineData}>
         <Layer {...routeLine} />
@@ -159,9 +150,24 @@ export default function Map() {
   };
 
   // TODO - Add use effect to update?
+  const D = () => {
+     const args = {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "raw" },
+            body: "241 Eisenhower Way",
+          };
+
+          fetch(
+            "http://testing.mypath.routemypath.com:8000/api/v1/address/",
+            args
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+  }
 
   return (
-    <div>
+    <>
       <ReactMapGL
         {...viewport}
         {...settings}
@@ -172,19 +178,20 @@ export default function Map() {
           viewport.width = window.innerWidth;
           setViewport(viewport);
         }}
+        onMouseDown= {() => setViewport(viewport)}
         // Set additional marker - on double click
-        onDblClick={(ev) =>
-          (Markers[2] = {
-            name: "Marked Location",
-            address: "none",
-            longitude: ev.lngLat[0],
-            latitude: ev.lngLat[1],
-          })
-        }
+        onDblClick={(ev) => {
+          Markers[0] = { name: Markers[0].name };
+          Markers[1] = { name: Markers[1].name };
+          console.log(ReactMapGL)
+        }}
+        //ref={(m) => mapRef = m }
       >
+
         {DisplayOverlay()}
         {DisplayMarkers()}
         {DisplayRoute()}
+        
 
         <GeolocateControl
           className="GeoLocate"
@@ -193,7 +200,7 @@ export default function Map() {
         />
         <NavigationControl className="NavControl" showCompass={false} />
       </ReactMapGL>
-    </div>
+    </>
   );
 }
 

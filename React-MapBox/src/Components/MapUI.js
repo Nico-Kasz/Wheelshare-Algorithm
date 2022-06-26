@@ -43,7 +43,6 @@ const DisplayProfile = () => {
 };
 
 export default function UI() {
-  // TODO - Create multiple Menus and ability to switch between them
   return (
     <div id="UI">
       <div id="UI-Left" className="UI-Left">
