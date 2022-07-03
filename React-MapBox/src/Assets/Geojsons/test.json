@@ -1,0 +1,296 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "node/2318390720",
+            "properties": {
+                "type": "node",
+                "id": "2318390720",
+                "tags": {
+                    "access": "private",
+                    "amenity": "bar",
+                    "name": "Göteborgs vinkällare",
+                    "website": "http://www.gbgvin.se"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9643378,
+                    57.7064417
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/2468969556",
+            "properties": {
+                "type": "node",
+                "id": "2468969556",
+                "tags": {
+                    "amenity": "bar",
+                    "name": "Dancing Dingo"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9767677,
+                    57.7002471
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/2468969615",
+            "properties": {
+                "type": "node",
+                "id": "2468969615",
+                "tags": {
+                    "amenity": "bar",
+                    "name": "Rockbaren"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9765627,
+                    57.7001445
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/2749347064",
+            "properties": {
+                "type": "node",
+                "id": "2749347064",
+                "tags": {
+                    "addr:city": "Göteborg",
+                    "addr:country": "SE",
+                    "addr:housenumber": "27",
+                    "addr:postcode": "416 64",
+                    "addr:street": "Friggagatan",
+                    "amenity": "bar",
+                    "contact:phone": "+46 31 16 56 16",
+                    "contact:website": "https://www.olstugan.se/",
+                    "name": "Ölstugan Tullen",
+                    "opening_hours": "Mo-Th 16:00-25:00, Fr 15:00-25:00, Sa-Su 13:00-25:00",
+                    "wheelchair": "limited"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9909991,
+                    57.7125346
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/3183389861",
+            "properties": {
+                "type": "node",
+                "id": "3183389861",
+                "tags": {
+                    "amenity": "bar",
+                    "level": "0",
+                    "name": "Cristal Bar"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.972163,
+                    57.709277
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/3212503161",
+            "properties": {
+                "type": "node",
+                "id": "3212503161",
+                "tags": {
+                    "amenity": "bar",
+                    "name": "Basque"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.961811,
+                    57.704539
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/3593394528",
+            "properties": {
+                "type": "node",
+                "id": "3593394528",
+                "tags": {
+                    "addr:city": "Göteborg",
+                    "addr:country": "SE",
+                    "addr:housenumber": "8",
+                    "addr:postcode": "41120",
+                    "addr:street": "Rosenlundsgatan",
+                    "amenity": "bar",
+                    "name": "Boulebar",
+                    "opening_hours": "Mo-Th 16:00-23:00; Fr 15:00-24:00; Sa 00:00-01:00,10:00-24:00; Su 00:00-01:00,10:00-22:00"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9587861,
+                    57.7011491
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/3819446557",
+            "properties": {
+                "type": "node",
+                "id": "3819446557",
+                "tags": {
+                    "amenity": "bar",
+                    "name": "Pix & Pintxos Cocktails"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.965178,
+                    57.70257
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/5582542722",
+            "properties": {
+                "type": "node",
+                "id": "5582542722",
+                "tags": {
+                    "addr:city": "Göteborg",
+                    "addr:country": "SE",
+                    "addr:housenumber": "13",
+                    "addr:postcode": "411 15",
+                    "addr:street": "Kyrkogatan",
+                    "amenity": "bar",
+                    "name": "Unity Jazz",
+                    "opening_hours": "Tu,We,Th 17:00+; Fr 17:00-01:00; Sa 13:00-01:00; Su,Mo off",
+                    "website": "https://www.unityjazz.se/"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9629109,
+                    57.7043876
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/5652180621",
+            "properties": {
+                "type": "node",
+                "id": "5652180621",
+                "tags": {
+                    "amenity": "bar",
+                    "name": "Champagnebaren Forssén & Öberg"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9630072,
+                    57.704355
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/7548081231",
+            "properties": {
+                "type": "node",
+                "id": "7548081231",
+                "tags": {
+                    "addr:city": "Hisings Backa",
+                    "addr:housenumber": "40",
+                    "addr:postcode": "422 43",
+                    "addr:street": "Aröds Industriväg",
+                    "amenity": "bar",
+                    "brewery": "yes",
+                    "name": "Sad Robot Brewing",
+                    "opening_hours": "Fr,Sa 17:00-24:00",
+                    "website": "https://www.sadrobot.se/"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9540528,
+                    57.7368711
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "node/8510636648",
+            "properties": {
+                "type": "node",
+                "id": "8510636648",
+                "tags": {
+                    "addr:city": "Göteborg",
+                    "addr:housenumber": "4",
+                    "addr:postcode": "411 01",
+                    "addr:street": "Friggagatan",
+                    "amenity": "bar",
+                    "name": "BRUK coctailbar",
+                    "opening_hours": "Tu-Sa 17:00-01:00",
+                    "opening_hours:covid19": "Tu-Sa 17:00-20:00",
+                    "website": "https://www.brukcocktailbar.se/"
+                },
+                "relations": [],
+                "meta": {}
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.9861657,
+                    57.7105303
+                ]
+            }
+        }
+    ]
+}

@@ -82,11 +82,12 @@ export default function UI() {
                     />
                   </Col>
                   <Col md={4}>
-                    <input
+                    <Button
                       type="submit"
                       className="btn-primary UI-Submit"
-                      value="Search"
-                    />
+                    >
+                    Search
+                    </Button>
                   </Col>
                 </Row>
               </div>
@@ -112,27 +113,29 @@ export default function UI() {
           <div id="Profile">{DisplayProfile()}</div>
           <div id="Footer-Info">
             <Row>
-              <Col xs={4}>
+              <Col md={4}>
                 <a
                   href="http://routemypath.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="footerBtn btn-primary"
                 >
                   About
                 </a>
               </Col>
-              <Col xs={4}>
+              <Col md={4}>
                 <Button
                   onClick={() => {
                     let Panel = document.getElementById("Feedback");
                     Panel.classList.remove("Feedback-Hidden");
                   }}
+                  className="footerBtn"
                 >
                   Feedback
                 </Button>
               </Col>
-              <Col xs={4}>
-                <a href="mailto:raychov@MiamiOH.edu">Contact Us</a>
+              <Col md={4}>
+                <a href="mailto:raychov@miamioh.edu" className="footerBtn btn-primary">Contact Us</a>
               </Col>
             </Row>
           </div>
@@ -166,7 +169,7 @@ export default function UI() {
           >
             <textarea className="form-control Feedback-Text" rows={6} />
             <Row>
-              <Col xs={6}>
+              <Col md={6}>
                 <Button
                   className="Feedback-Button"
                   onClick={() => {
@@ -178,7 +181,7 @@ export default function UI() {
                   Close
                 </Button>
               </Col>
-              <Col xs={6}>
+              <Col md={6}>
                 <Button type="submit" className="Feedback-Button">
                   Send Feedback
                 </Button>
