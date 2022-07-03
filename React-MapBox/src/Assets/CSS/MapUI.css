@@ -84,7 +84,7 @@
 #Slider {
     position: absolute;
     width: 90%;
-    top: 45%;
+    top: 40%;
 }
 
 .Slider-Text {
@@ -136,11 +136,18 @@
     border-width: 3px;
     border-style: solid;
     background-color: aliceblue;
+
+    overflow-y: auto;
+    width: 100%;
+    max-width: 400px;
 }
 
 .Feedback {
     transform: translateY(-100%);
     transition: all .8s ease;
+    /* overflow-y: auto;
+    width: 100%;
+    max-width: 350px; */
 }
 
 .Feedback-Hidden {
@@ -148,14 +155,40 @@
 }
 
 .Feedback-Text {
-    width: 90%;
-    margin: 5% 5% 5%;
-
+    width: 80%;
+    /* margin: 5% 5% 5%; */
+    margin: 1em auto;
     font-size: 15px;
     font-weight: bold;
 }
 
 .Feedback-Button {
-    width: 90%;
-    margin: 5%;
+    width: 80%;
+    margin: 1em;
+    /* overflow: auto; */
+}
+
+
+.footerBtn {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border-radius: 0.25em;
+    text-decoration: none;
+    margin: 0.35em 0;
+}
+
+/* .footerBtn:hover, .footerBtn:focus {
+    color: white;
+} */
+
+/*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+.btn-primary {
+    color: #fff;
+    background-color: #19297C;
+    border-color: #357ebd;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #5386E4;
+    border-color: #285e8e;
 }
