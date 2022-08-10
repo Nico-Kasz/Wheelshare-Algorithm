@@ -23,6 +23,9 @@ public class UserController {
     @ModelAttribute
     public void setResponseHeader(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+        response.setHeader("Access-Control-Max-Age", "3600");
     }
 
     // This serves as the method handles Post request

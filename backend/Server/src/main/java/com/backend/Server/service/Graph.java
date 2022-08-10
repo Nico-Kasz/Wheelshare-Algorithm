@@ -29,18 +29,18 @@ public class Graph {
 
     // Instance variable
     // number of vertices
-    private int V, start, end;
+    private int start, end;
     // adjacency matrix and weight
-    private List<List<Integer>> adj, weights;  // of type ArrayList<LinkedList<Integer>>
+    private Map<Integer, List<Integer>> adj;  // map of node (integer) to its adjacent nodes
+    private Map<Integer, List<Double>> weights;
 
 
     // constructor
-    public Graph(int V, int start, int end, List<List<Integer>> adj, List<List<Integer>> weight) {
-        this.V = V;
+    public Graph(int start, int end, Map<Integer, List<Integer>> adj, Map<Integer, List<Double>> weights) {
         this.start = start;
         this.end = end;
         this.adj = adj;
-        this.weights = weight;
+        this.weights = weights;
     }
 
     public List<Integer> routeAlgo() {
@@ -49,32 +49,24 @@ public class Graph {
         Map<Integer, Integer> preNode = new HashMap<Integer, Integer>();
         PriorityQueue<Edge> maxHeap = new PriorityQueue<>();
 
-        // add start point to hashmap
-        preNode.put(start, -1);
-        // Prepopulate heap with edges starting from the start point
-        for (int i = 0; i < adj.get(start).size(); i++) {
-            // prepare
-            int nextNode = adj.get(start).get(i);
-            int weight = weights.get(start).get(i);
-            // add to heap
-            maxHeap.add(new Edge(weight, start, nextNode));
-        }
+        // create a starting virtual edge to start with
+        maxHeap.add(new Edge(0, -1, this.start));
 
         // Let's go
         while (!preNode.containsKey(end) && maxHeap.size() > 0) {
             // get out the max edge
             Edge maxEdge = maxHeap.remove();
-            // test
-            System.out.println(maxEdge);
-            // test
+//            // test
+//            System.out.println(maxEdge);
+//            // test
             int oldNode = maxEdge.start; int newNode = maxEdge.end;
-            // add this new node to hashmap
+            // otherwise, add this new node to hashmap
             preNode.put(newNode, oldNode);
             // explore the adjacency nodes
             for (int i = 0; i < adj.get(newNode).size(); i++) {
                 // prepare
                 int nextNode = adj.get(newNode).get(i);
-                int weight = weights.get(newNode).get(i);
+                double weight = weights.get(newNode).get(i);
                 // only explore unvisited nodes
                 if (preNode.containsKey(nextNode)) {
                     continue;
@@ -85,52 +77,55 @@ public class Graph {
         }
 
         // Printing path
-        LinkedList<Integer> result = new LinkedList<Integer>();
+        return printRoute(preNode);
+    }
+
+    // Print back the route from the end node
+    // given the preNode, a mapping of node and preNode
+    public List<Integer> printRoute(Map<Integer, Integer> preNode) {
+        List<Integer> result = new LinkedList<Integer>();
         int lastNode = end;
         while (preNode.containsKey(lastNode)) {
             // add to result on the left side
-            result.addFirst(lastNode);
+            result.add(0, lastNode);
             // update last node
             lastNode = preNode.get(lastNode);
         }
         // result
-        return  result;
+        return result;
     }
 
-    public static void main(String[] args)
-    {
-        // mocking data
-        int V = 5;
-        int start = 1, end = 5;
-        // mocking adjacency matrix and weight
-        // adj
-        List<List<Integer>> adj = new ArrayList<>();
-        adj.add(new LinkedList<Integer>());  // index 0
-        adj.add(new LinkedList<Integer>(Arrays.asList(2, 3)));
-        adj.add(new LinkedList<Integer>(Arrays.asList(1, 3, 4)));
-        adj.add(new LinkedList<Integer>(Arrays.asList(1, 2, 5, 4)));
-        adj.add(new LinkedList<Integer>(Arrays.asList(2, 3, 5)));
-        adj.add(new LinkedList<Integer>(Arrays.asList(3, 4)));
-
-
-        // weight
-        List<List<Integer>> weight = new ArrayList<>();
-        weight.add(new LinkedList<Integer>());  // index 0
-        weight.add(new LinkedList<Integer>(Arrays.asList(3, 10)));
-        weight.add(new LinkedList<Integer>(Arrays.asList(3, 5, 4)));
-        weight.add(new LinkedList<Integer>(Arrays.asList(10, 5, 1, 1)));
-        weight.add(new LinkedList<Integer>(Arrays.asList(3, 1, 4)));
-        weight.add(new LinkedList<Integer>(Arrays.asList(1, 4)));
-
-        // initialize
-        Graph testGraph = new Graph(V, start, end, adj, weight);
-
-        // run
-        List<Integer> res = testGraph.routeAlgo();
-        for (int ele : res) {
-            System.out.println(ele);
-        }
-    }
+//    public static void main(String[] args)
+//    {
+//        // mocking data
+//        int start = 1, end = 5;
+//        // mocking adjacency matrix and weight
+//        // adj
+//        Map<Integer, List<Integer>> adj = new HashMap<>();
+//        adj.put(1, new LinkedList<Integer>(Arrays.asList(2, 3)));
+//        adj.put(2, new LinkedList<Integer>(Arrays.asList(1, 4)));
+//        adj.put(3, new LinkedList<Integer>(Arrays.asList(1, 4)));
+//        adj.put(4, new LinkedList<Integer>(Arrays.asList(2, 3, 5)));
+//        adj.put(5, new LinkedList<Integer>(Arrays.asList(4)));
+//
+//
+//        // weight
+//        Map<Integer, List<Double>> weight = new HashMap<>();
+//        weight.put(1, new LinkedList<Double>(Arrays.asList(4.0, 16.0)));
+//        weight.put(2, new LinkedList<Double>(Arrays.asList(4.0, 3.0)));
+//        weight.put(3, new LinkedList<Double>(Arrays.asList(16.0, 3.0)));
+//        weight.put(4, new LinkedList<Double>(Arrays.asList(3.0, 3.0, 5.0)));
+//        weight.put(5, new LinkedList<Double>(Arrays.asList(5.0)));
+//
+//        // initialize
+//        Graph testGraph = new Graph(start, end, adj, weight);
+//
+//        // run
+//        List<Integer> res = testGraph.routeAlgo();
+//        for (int ele : res) {
+//            System.out.println(ele);
+//        }
+//    }
 }
 
 

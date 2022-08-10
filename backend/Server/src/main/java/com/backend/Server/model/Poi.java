@@ -34,6 +34,11 @@ public class Poi {
     // to string
     @Override
     public String toString() {
-        return String.format("(%.2f, %.2f)", longitude, latitude);
+        return String.format("(%.8f, %.8f)", longitude, latitude);
+    }
+
+    // distance
+    public double distance(Poi other) {
+        return Math.pow (this.latitude - other.latitude, 2) + Math.pow(this.longitude - other.longitude, 2);
     }
 }

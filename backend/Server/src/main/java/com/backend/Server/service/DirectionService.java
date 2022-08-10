@@ -1,14 +1,18 @@
 package com.backend.Server.service;
 
 import com.backend.Server.dao.GraphDao;
+import com.backend.Server.dao.SampleGraphDao;
 import com.backend.Server.model.Direction;
+import com.backend.Server.model.GeoJson;
 import com.backend.Server.model.Poi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DirectionService {
@@ -20,19 +24,40 @@ public class DirectionService {
         this.graphDao = graphDao;
     }
     // method
-    public List<Poi> findDirection(Direction dir) {
-        // get the num of vertices, start and ending point
-        int[] metaData = graphDao.metaGraph();
-        int V = metaData[0];
-        int start = metaData[1];
-        int end = metaData[2];
-        // adjacency matrix
-        List<List<Integer>> adj = graphDao.constructGraph(dir);
-        List<List<Integer>> weight = graphDao.constructWeight(dir);
+    public GeoJson findDirection(Direction dir) {
+        // get the start and ending point of the graph
+        // based on requested direction
+        int[] metaData = graphDao.metaGraph(dir);
+        int start = metaData[0];
+        int end = metaData[1];
+        System.out.println("finish meta");
+        // get the adjacency matrix
+        Map<Integer, List<Integer>> adj = graphDao.constructGraph();
+        Map<Integer, List<Double>> weights = graphDao.constructWeight();
+        System.out.println("finished construct adjacency and weights");
         // initialize the graph algorithm to run
-        Graph graphAlgo = new Graph(V, start, end, adj, weight);
+        Graph graphAlgo = new Graph(start, end, adj, weights);
         List<Integer> result = graphAlgo.routeAlgo();
+        System.out.println(result);
+        System.out.println("Finished graph result");
+        System.out.println();
         // convert back to usable data
-        return graphDao.match(result);
+        List<Poi> route =  graphDao.match(result);
+        // adding the actual start and ending point of the user
+        route.add(0, dir.getSource());
+        route.add(dir.getDestination());
+        return new GeoJson(route);
     }
+
+//    public static void main(String[] args) {
+//        /**
+//         *(-84.7344511, 39.5096585)
+//         * (-84.7339319, 39.5100048)
+//         * */
+//        Direction dir = new Direction(new Poi( -84.7344511, 39.5096585),
+//                                    new Poi(-84.7339319, 39.5100048));
+//        GraphDao graphData = new SampleGraphDao();
+//        DirectionService serv = new DirectionService(graphData);
+//        System.out.println(serv.findDirection(dir));
+//    }
 }
