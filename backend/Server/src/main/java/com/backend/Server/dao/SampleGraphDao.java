@@ -2,6 +2,7 @@ package com.backend.Server.dao;
 
 import com.backend.Server.model.Direction;
 import com.backend.Server.model.Poi;
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
 // use for parsing json
@@ -17,9 +18,11 @@ import java.util.*;
 
 @Repository("GraphData")
 public class SampleGraphDao implements GraphDao{
+//    // testing
+//    Set<String> listing = new HashSet<>();
     // instance variables
-    private Map<Integer, Poi> idToPOI;
-    private Map<Long, Integer> refToId;
+    private final Map<Integer, Poi> idToPOI;
+    private final Map<Long, Integer> refToId;
     private Map<String, Double> surfaceType;
     // instance variables for graph
     Map<Integer, List<Integer>> adj;
@@ -44,13 +47,17 @@ public class SampleGraphDao implements GraphDao{
 
     public void surfaceInit() {
         this.surfaceType = new HashMap<>();
-        this.surfaceType.put("asphalt", 0.9 / 1.0);
-        this.surfaceType.put("concrete", 0.8/1.0);
-        this.surfaceType.put("paved", 0.7 / 1.0);
-        this.surfaceType.put("paving_stones", 0.6/ 1.0);
-        this.surfaceType.put("artificial_turf", 0.5/1.0);
-        this.surfaceType.put("bricks", 0.4/1.0);
-        this.surfaceType.put("grass", 0.3/1.0);
+        this.surfaceType.put("asphalt", 0.9);
+        this.surfaceType.put("concrete", 0.8);
+        this.surfaceType.put("paved", 0.7);
+        this.surfaceType.put("cobblestone", 0.7);
+        this.surfaceType.put("paving_stones", 0.6);
+        this.surfaceType.put("ground", 0.6);
+        this.surfaceType.put("artificial_turf", 0.5);
+        this.surfaceType.put("bricks", 0.4);
+        this.surfaceType.put("sand", 0.4);
+        this.surfaceType.put("grass", 0.3);
+        this.surfaceType.put("dirt", 0.3);
     }
 
     // lists of useful methods
@@ -114,6 +121,11 @@ public class SampleGraphDao implements GraphDao{
         return listOfPoints;
     }
 
+    @Override
+    public Map<Integer, Poi> getMapping() {
+        return this.idToPOI;
+    }
+
     public double getScore(double roadDiff, double slope) {
         double safety = roadDiff * 40 + ((20 - Math.abs(slope)) / 20.0 * 40) + 20;
         double difficulty = roadDiff * 40 + ((20 - Math.abs(slope)) / 20.0 * 30) + 30;
@@ -165,15 +177,19 @@ public class SampleGraphDao implements GraphDao{
                 String key = (String) tag.get("_k");
                 String value = (String) tag.get("_v");
                 // some check
-                if (key.equals("incline") && (value.equals("up") || value.equals("down"))) {
-                    value = "1";
+                if (key.equals("incline")) {
+                    try {
+                        Double.parseDouble(value);
+                    } catch(NumberFormatException e) {
+                        value = "0";
+                    }
                 }
-                // grass check - now, we don't allow grass
+                // grass check - now, we don't allow grass cross out
                 if (key.equals("landuse") && value.equals("grass")) {
                     // mark this as not accessible for wheelchair
                     info.put("wheelchair", "no");
                 }
-                // high way check
+                // high way check cross out
                 if (key.equals("highway")
                         && (value.equals("tertiary")
                         || value.equals("primary")
@@ -181,6 +197,14 @@ public class SampleGraphDao implements GraphDao{
                     // mark this as not accessible for wheelchair
                     info.put("wheelchair", "no");
                 }
+                // building check cross out
+                if (key.equals("building") && value.equals("university")) {
+                    info.put("wheelchair", "no");
+                }
+                // under construction cross out
+//                if (key.equals("construction") && value.equals("footway")) {
+//                    info.put("wheelchair", "no");
+//                }
                 // add to the hashmap
                 if (info.containsKey(key)) {
                     info.put(key, value);
@@ -199,6 +223,8 @@ public class SampleGraphDao implements GraphDao{
         String surface = info.get("surface");
         double roadDiff = 0.5;
         if (!surface.equals("#")) {
+//            // testing
+//            this.listing.add(surface);
             roadDiff = this.surfaceType.get(surface);
         }
         return this.getScore(roadDiff, slope);
@@ -244,6 +270,8 @@ public class SampleGraphDao implements GraphDao{
                 weights.computeIfAbsent(id2, k -> new ArrayList<>()).add(weight);
             }
         }
+//        // testing
+//        System.out.println(this.listing);
     }
 
     // Reading data from JSON file
@@ -265,8 +293,8 @@ public class SampleGraphDao implements GraphDao{
             this.processWays(ways);
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

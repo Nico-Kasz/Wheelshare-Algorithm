@@ -1,5 +1,8 @@
 package com.backend.Server.service;
 
+import com.backend.Server.model.Poi;
+import com.sun.corba.se.impl.oa.poa.POAImpl;
+
 import java.util.*;
 
 //if design in OOP->consider each node as a class with accordingly properties
@@ -8,39 +11,58 @@ public class Graph {
     class Edge implements Comparable<Edge> {
         // instance variables
         private final double weight;
-        private final int start, end;
+        private final int first, last;
 
         Edge(double weight, int start, int end) {
             this.weight = weight;
-            this.start = start;
-            this.end = end;
+            this.first = start;
+            this.last = end;
         }
 
         @Override
         public int compareTo(Edge o) {
+            if (o.weight == this.weight) {
+                double thisDist = idToPoi.get(this.last).distance(idToPoi.get(end));
+                double otherDist = idToPoi.get(o.last).distance(idToPoi.get(end));
+                // result
+                if (thisDist < otherDist) {
+                    return -1;
+                }
+                else if (thisDist > otherDist) {
+                    return 1;
+                }
+                return 0;
+            }
             return (int)(o.weight - this.weight);
         }
 
         @Override
         public String toString() {
-            return String.format("(%f, %d, %d)", weight, start, end);
+            return String.format("(%f, %d, %d)", weight, first, last);
         }
     }
 
     // Instance variable
     // number of vertices
     private int start, end;
+    // aiding to find closer destination
+    private Map<Integer, Poi> idToPoi;
     // adjacency matrix and weight
     private Map<Integer, List<Integer>> adj;  // map of node (integer) to its adjacent nodes
     private Map<Integer, List<Double>> weights;
 
 
     // constructor
-    public Graph(int start, int end, Map<Integer, List<Integer>> adj, Map<Integer, List<Double>> weights) {
+    public Graph(int start, int end, Map<Integer, Poi> idToPoi,
+                 Map<Integer, List<Integer>> adj, Map<Integer, List<Double>> weights) {
         this.start = start;
         this.end = end;
+        this.idToPoi = idToPoi;
         this.adj = adj;
         this.weights = weights;
+//        System.out.println("Testing new");
+//        System.out.println(this.idToPoi.get(this.start));
+//        System.out.println(this.idToPoi.get(this.end));
     }
 
     public List<Integer> routeAlgo() {
@@ -59,7 +81,7 @@ public class Graph {
 //            // test
 //            System.out.println(maxEdge);
 //            // test
-            int oldNode = maxEdge.start; int newNode = maxEdge.end;
+            int oldNode = maxEdge.first; int newNode = maxEdge.last;
             // otherwise, add this new node to hashmap
             preNode.put(newNode, oldNode);
             // explore the adjacency nodes

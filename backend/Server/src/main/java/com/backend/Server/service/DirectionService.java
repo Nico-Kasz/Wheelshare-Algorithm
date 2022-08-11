@@ -5,6 +5,7 @@ import com.backend.Server.dao.SampleGraphDao;
 import com.backend.Server.model.Direction;
 import com.backend.Server.model.GeoJson;
 import com.backend.Server.model.Poi;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,17 @@ public class DirectionService {
         // get the adjacency matrix
         Map<Integer, List<Integer>> adj = graphDao.constructGraph();
         Map<Integer, List<Double>> weights = graphDao.constructWeight();
+//        // some calculation
+//        System.out.println("Number of nodes: " + adj.size());
+//        int summ = 0;
+//        for (List<Integer> nei : adj.values()) {
+//            summ += nei.size();
+//        }
+//        System.out.println("Number of edges: " + summ);
+//        // end calculation
         System.out.println("finished construct adjacency and weights");
         // initialize the graph algorithm to run
-        Graph graphAlgo = new Graph(start, end, adj, weights);
+        Graph graphAlgo = new Graph(start, end, graphDao.getMapping(), adj, weights);
         List<Integer> result = graphAlgo.routeAlgo();
         System.out.println(result);
         System.out.println("Finished graph result");

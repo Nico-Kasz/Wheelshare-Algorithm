@@ -20,4 +20,6 @@ public interface GraphDao {
     // match the number to the poi
     List<Poi> match(List<Integer> path);
 
+    Map<Integer, Poi> getMapping();
+
 }
